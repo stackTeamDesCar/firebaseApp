@@ -22,14 +22,14 @@ import {
 
 import messages from './messages';
 import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
+import { changeUsername, getDataList } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
 const key = 'home';
 
-export function HomePage({ username, onSubmitForm }) {
+export function HomePage({ username, onSubmitForm, getData }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -38,7 +38,7 @@ export function HomePage({ username, onSubmitForm }) {
     if (username && username.trim().length > 0) onSubmitForm();
   }, []);
 
-  return <div>Home Section</div>;
+  return <div onClick={getData}>Home Section</div>;
 }
 
 HomePage.propTypes = {
@@ -64,6 +64,7 @@ export function mapDispatchToProps(dispatch) {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },
+    getData: () => dispatch(getDataList()),
   };
 }
 

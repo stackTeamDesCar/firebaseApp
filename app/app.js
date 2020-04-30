@@ -17,6 +17,8 @@ import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
+import firebase from 'firebase';
+
 // Import root app
 import App from 'containers/App';
 
@@ -45,6 +47,19 @@ openSansObserver.load().then(() => {
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+
+var firebaseConfig = {
+  apiKey: "AIzaSyDLchLeVyI550fFLO07uflUvNBPGvcMWJ0",
+  authDomain: "descar-c5c37.firebaseapp.com",
+  databaseURL: "https://descar-c5c37.firebaseio.com",
+  projectId: "descar-c5c37",
+  storageBucket: "descar-c5c37.appspot.com",
+  messagingSenderId: "27343818817",
+  appId: "1:27343818817:web:fc9bb09a0f4bf376b3f6c0"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 const render = messages => {
   ReactDOM.render(
