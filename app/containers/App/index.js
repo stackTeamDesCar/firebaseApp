@@ -12,6 +12,8 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
+import Profile from 'containers/Profile/Loadable';
+import Login from 'containers/Login/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
@@ -29,9 +31,15 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      {/* <Header /> */}
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+      </Switch>
+      <Switch>
+        <Route exact path="/profile" component={Profile} />
+      </Switch>
+      <Switch>
+        <Route exact path="/login" component={Login} />
       </Switch>
       {/* <Footer /> */}
       <GlobalStyle />

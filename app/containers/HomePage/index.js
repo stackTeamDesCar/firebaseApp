@@ -28,8 +28,28 @@ import reducer from './reducer';
 import saga from './saga';
 
 import Section from 'components/Section';
+import Icon from 'components/Icon';
+import Text from 'components/Text';
 
 const key = 'home';
+import tasks from '../../assets/svg/tasks.svg';
+import calendar from '../../assets/svg/calendar.svg';
+import chat from '../../assets/svg/chat.svg';
+
+const sections = [
+  {
+    name: 'Chat',
+    icon: chat
+  },
+  {
+    name: 'Calendario',
+    icon: calendar
+  },
+  {
+    name: 'Attività',
+    icon: tasks
+  },
+];
 
 import { HomeWrapper } from './styled';
 
@@ -43,9 +63,19 @@ export function HomePage({ username, onSubmitForm, getData }) {
 
 
   return <HomeWrapper>
-    <Section display="flex" justify="center" align="center" width="33" height="100" background="grey" hover>Chat</Section>
-    <Section display="flex" justify="center" align="center" width="33" height="100" background="grey" hover>Attività</Section>
-    <Section display="flex" justify="center" align="center" width="33" height="100" background="grey" hover>Calendario</Section>
+    {sections.map((el, index) => <Section
+      key={index}
+      display="flex"
+      justify="center"
+      align="center"
+      direction="column"
+      width="33"
+      height="100"
+      background="#bdc3c7"
+      hover >
+      <Icon size={4} icon={el.icon} hover/>
+      <Text>{el.name}</Text>
+    </Section>)}
   </HomeWrapper>
 }
 

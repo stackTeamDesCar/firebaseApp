@@ -10,8 +10,11 @@ function Header() {
   return (
     <div>
       <NavBar>
-        <HeaderLink to="/">
-          <FormattedMessage {...messages.home} />
+        <HeaderLink to="/profile">
+          <FormattedMessage {...messages.profile} />
+        </HeaderLink>
+        <HeaderLink to="/login">
+          <FormattedMessage {...messages.logout} />
         </HeaderLink>
       </NavBar>
     </div>

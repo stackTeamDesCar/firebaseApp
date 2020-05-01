@@ -12,4 +12,12 @@ export default defineMessages({
     id: `${scope}.home`,
     defaultMessage: 'LinkHome',
   },
+  logout: {
+    id: `${scope}.logout`,
+    defaultMessage: 'Logout',
+  },
+  profile: {
+    id: `${scope}.profile`,
+    defaultMessage: 'Profilo',
+  },
 });
