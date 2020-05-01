@@ -27,18 +27,26 @@ import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
+import Section from 'components/Section';
+
 const key = 'home';
+
+import { HomeWrapper } from './styled';
 
 export function HomePage({ username, onSubmitForm, getData }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  useEffect(() => {
-    // When initial state username is not null, submit the form to load repos
-    if (username && username.trim().length > 0) onSubmitForm();
-  }, []);
+  // useEffect(() => {
 
-  return <div onClick={getData}>Home Section</div>;
+  // }, []);
+
+
+  return <HomeWrapper>
+    <Section display="flex" justify="center" align="center" width="33" height="100" background="grey" hover>Chat</Section>
+    <Section display="flex" justify="center" align="center" width="33" height="100" background="grey" hover>Attività</Section>
+    <Section display="flex" justify="center" align="center" width="33" height="100" background="grey" hover>Calendario</Section>
+  </HomeWrapper>
 }
 
 HomePage.propTypes = {

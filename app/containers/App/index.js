@@ -18,22 +18,22 @@ import Footer from 'components/Footer';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
+  // max-width: calc(768px + 16px * 2);
+  // margin: 0 auto;
+  // display: flex;
+  // min-height: 100%;
+  // padding: 0 16px;
+  // flex-direction: column;
 `;
 
 export default function App() {
   return (
     <AppWrapper>
-      <Header />
+      {/* <Header /> */}
       <Switch>
         <Route exact path="/" component={HomePage} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
       <GlobalStyle />
     </AppWrapper>
   );
