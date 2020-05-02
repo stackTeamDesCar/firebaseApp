@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, SET_LOGOUT, LOGIN,SET_LOGIN } from "./constants";
+import { DEFAULT_ACTION, SET_LOGOUT, LOGIN, SET_LOGIN } from "./constants";
 
 export function defaultAction() {
   return {
@@ -21,7 +21,7 @@ export function setLogout() {
 export function login(payload) {
   return {
     type: LOGIN,
-    payload
+    user: payload
   };
 }
 

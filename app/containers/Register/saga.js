@@ -12,6 +12,7 @@ function* registerUser({ userData }) {
   const db = yield firebase.database();
   try {
     const rec = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
+    console.log(rec)
     if (rec) {
       yield put(replace('/login'));
     }
