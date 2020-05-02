@@ -6,7 +6,7 @@
 import produce from "immer";
 import { DEFAULT_ACTION, REGISTRATION_SUCCESS } from "./constants";
 
-export const initialState = {successRegistration:false};
+export const initialState = {};
 
 /* eslint-disable default-case, no-param-reassign */
 const registerReducer = (state = initialState, action) =>

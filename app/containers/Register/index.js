@@ -62,7 +62,6 @@ Register.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   register: makeSelectRegister(),
-  registrationSuccess: makeSelectRegisterSuccess(),
 });
 
 function mapDispatchToProps(dispatch) {
