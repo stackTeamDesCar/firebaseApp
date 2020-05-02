@@ -19,22 +19,21 @@ import reducer from "./reducer";
 import saga from "./saga";
 import messages from "./messages";
 
-export function Login() {
+export function Login({dispatch}) {
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (evt) => {
+  const handleLogin = (evt) => {
     evt.preventDefault();
-    console.log(email,password)
-}
+    dispatch(registerUser({ email: email, password: password }))
+  }
 
   return (
     <div>
-      {/* form per inserire dati di login-fare dispatch con dati----DISPATCH(LOGIN({EMAIL:....,PASSWORD:...})) */}
-      <form onSubmit={handleSubmit}>
       <label>
         Email:
         <input
@@ -51,8 +50,7 @@ export function Login() {
           onChange={e => setPassword(e.target.value)}
         />
       </label>
-      <input type="submit" value="Login" />
-    </form>
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 }
