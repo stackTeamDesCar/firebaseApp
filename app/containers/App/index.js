@@ -14,6 +14,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
 import Login from 'containers/Login/Loadable';
+import Register from 'containers/Register/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
@@ -40,6 +41,9 @@ export default function App() {
       </Switch>
       <Switch>
         <Route exact path="/login" component={Login} />
+      </Switch>
+      <Switch>
+        <Route exact path="/register" component={Register} />
       </Switch>
       {/* <Footer /> */}
       <GlobalStyle />

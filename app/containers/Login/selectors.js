@@ -6,6 +6,8 @@ import { initialState } from "./reducer";
  */
 
 const selectLoginDomain = state => state.login || initialState;
+const selectGlobal = state => state.global || initialState;
+
 
 /**
  * Other specific selectors
@@ -21,5 +23,12 @@ const makeSelectLogin = () =>
     substate => substate
   );
 
+  const makeSelectCredentials = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.userData,
+  );
+
+
 export default makeSelectLogin;
-export { selectLoginDomain };
+export { selectLoginDomain,makeSelectCredentials };

@@ -69,12 +69,12 @@ export function HomePage({ username, onSubmitForm, getData }) {
       justify="center"
       align="center"
       direction="column"
-      width="33"
+      width="33.33"
       height="100"
       background="#bdc3c7"
       hover >
-      <Icon size={4} icon={el.icon} hover/>
-      <Text>{el.name}</Text>
+      <Icon size="4" icon={el.icon} hover />
+      <Text size="1" letterSpacing >{el.name}</Text>
     </Section>)}
   </HomeWrapper>
 }

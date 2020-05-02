@@ -1,10 +1,10 @@
 /**
  *
- * Login
+ * Register
  *
  */
 
-import React, { memo,useState } from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -14,27 +14,33 @@ import { compose } from "redux";
 
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
-import makeSelectLogin from "./selectors";
+import makeSelectRegister from "./selectors";
 import reducer from "./reducer";
 import saga from "./saga";
+import { registerUser } from './actions';
+
 import messages from "./messages";
 
-export function Login() {
-  useInjectReducer({ key: "login", reducer });
-  useInjectSaga({ key: "login", saga });
+export function Register({dispatch}) {
+  useInjectReducer({ key: "register", reducer });
+  useInjectSaga({ key: "register", saga });
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    console.log(email,password)
-}
+  // const dispatch = useDispatch;
+
+
+
+  // const handleRegistr = (evt) => {
+  //   console.log(email, password)
+  //   // evt.preventDefault();
+  // }
 
   return (
     <div>
       {/* form per inserire dati di login-fare dispatch con dati----DISPATCH(LOGIN({EMAIL:....,PASSWORD:...})) */}
-      <form onSubmit={handleSubmit}>
       <label>
         Email:
         <input
@@ -51,18 +57,17 @@ export function Login() {
           onChange={e => setPassword(e.target.value)}
         />
       </label>
-      <input type="submit" value="Login" />
-    </form>
+      <button onClick={() => dispatch(registerUser({ email: email, password: password }))}>registra</button>
     </div>
   );
 }
 
-Login.propTypes = {
+Register.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  login: makeSelectLogin()
+  register: makeSelectRegister()
 });
 
 function mapDispatchToProps(dispatch) {
@@ -79,4 +84,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo
-)(Login);
+)(Register);

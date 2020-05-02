@@ -17,6 +17,8 @@ export const initialState = {
   currentUser: false,
   userData: {
     repositories: false,
+    email:'',
+    password:'',
   },
 };
 
