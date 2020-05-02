@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet";
 import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
+import { setLogin, setLogout } from './actions';
 
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
@@ -18,6 +19,12 @@ import makeSelectLogin from "./selectors";
 import reducer from "./reducer";
 import saga from "./saga";
 import messages from "./messages";
+
+import Wrapper from 'components/Wrapper';
+import Input from 'components/Input';
+
+import Button from '@material-ui/core/Button';
+
 
 export function Login({dispatch}) {
   useInjectReducer({ key: "login", reducer });
@@ -29,29 +36,17 @@ export function Login({dispatch}) {
 
   const handleLogin = (evt) => {
     evt.preventDefault();
-    dispatch(registerUser({ email: email, password: password }))
+    dispatch(setLogin({ email: email, password: password }))
   }
 
   return (
-    <div>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-      </label>
-      <button onClick={handleLogin}>Login</button>
-    </div>
+    <Wrapper bg="primary" maxWidth="xl" flex direction="column" >
+      <Input label="email" variant="outlined" id="email" fullWidth onChange={e => setPassword(e.target.value)}></Input>
+      <Input label="password" variant="outlined" id="password" fullWidth onChange={e => setEmail(e.target.value)}></Input>
+      <Button variant="contained" onClick={handleLogin}>
+        Login
+      </Button>
+    </Wrapper>
   );
 }
 
