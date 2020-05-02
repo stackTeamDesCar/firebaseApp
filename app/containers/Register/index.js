@@ -21,26 +21,20 @@ import { registerUser } from './actions';
 
 import messages from "./messages";
 
-export function Register({dispatch}) {
+export function Register({ dispatch }) {
   useInjectReducer({ key: "register", reducer });
   useInjectSaga({ key: "register", saga });
-
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const dispatch = useDispatch;
-
-
-
-  // const handleRegistr = (evt) => {
-  //   console.log(email, password)
-  //   // evt.preventDefault();
-  // }
+  const handleRegistr = (evt) => {
+    evt.preventDefault();
+    dispatch(registerUser({ email: email, password: password }))
+  }
 
   return (
     <div>
-      {/* form per inserire dati di login-fare dispatch con dati----DISPATCH(LOGIN({EMAIL:....,PASSWORD:...})) */}
       <label>
         Email:
         <input
@@ -57,7 +51,7 @@ export function Register({dispatch}) {
           onChange={e => setPassword(e.target.value)}
         />
       </label>
-      <button onClick={() => dispatch(registerUser({ email: email, password: password }))}>registra</button>
+      <button onClick={handleRegistr}>registra</button>
     </div>
   );
 }
