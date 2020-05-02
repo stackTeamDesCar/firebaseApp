@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet";
 import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
-import { setLogin, setLogout } from './actions';
+import { login } from './actions';
 
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
@@ -36,13 +36,13 @@ export function Login({dispatch}) {
 
   const handleLogin = (evt) => {
     evt.preventDefault();
-    dispatch(setLogin({ email: email, password: password }))
+    dispatch(login({ email: email, password: password }))
   }
 
   return (
     <Wrapper bg="primary" maxWidth="xl" flex direction="column" >
-      <Input label="email" variant="outlined" id="email" fullWidth onChange={e => setPassword(e.target.value)}></Input>
-      <Input label="password" variant="outlined" id="password" fullWidth onChange={e => setEmail(e.target.value)}></Input>
+      <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={e => setEmail(e.target.value)}></Input>
+      <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={e => setPassword(e.target.value)}></Input>
       <Button variant="contained" onClick={handleLogin}>
         Login
       </Button>

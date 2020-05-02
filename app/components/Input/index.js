@@ -9,17 +9,17 @@ const useStyles = makeStyles(theme => ({
     margin: '1rem',
     color: '#fff',
     width: '30%',
-    
+
   },
 }));
 
 
-function Input({id, label, variant, onChange, fullWidth}) {
+function Input({ id, label, variant, onChange, type,value, fullWidth }) {
   const classes = useStyles();
-    return (
-      <TextField id={id} label={label} variant={variant} onChange={onChange} className={classes.root} size="large" />
-    );
-  }
+  return (
+    <TextField id={id} type={type} value={value} label={label} variant={variant} onChange={onChange} className={classes.root} size="large" />
+  );
+}
 
 Input.propTypes = {
   id: PropTypes.string,
