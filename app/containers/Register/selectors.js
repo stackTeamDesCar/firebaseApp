@@ -21,5 +21,6 @@ const makeSelectRegister = () =>
     substate => substate
   );
 
+
 export default makeSelectRegister;
 export { selectRegisterDomain };

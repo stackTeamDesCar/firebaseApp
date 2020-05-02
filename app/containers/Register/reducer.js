@@ -4,16 +4,17 @@
  *
  */
 import produce from "immer";
-import { DEFAULT_ACTION, REGISTRATION } from "./constants";
+import { DEFAULT_ACTION, REGISTRATION_SUCCESS } from "./constants";
 
-export const initialState = {};
+export const initialState = {successRegistration:false};
 
 /* eslint-disable default-case, no-param-reassign */
 const registerReducer = (state = initialState, action) =>
-  produce(state, (draft) => {
+  produce(state,draft => {
     switch (action.type) {
-      // case REGISTRATION:
-      //   draft.global.userData = action.payload;
+      // case REGISTRATION_SUCCESS:
+      //   console.log(draft)
+      //   draft.successRegistration = action.payload;
       case DEFAULT_ACTION:
         break;
     }

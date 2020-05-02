@@ -6,7 +6,7 @@
 
 import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { connect, } from "react-redux";
 import { Helmet } from "react-helmet";
 import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
@@ -21,7 +21,7 @@ import { registerUser } from './actions';
 
 import messages from "./messages";
 
-export function Register({ dispatch }) {
+export function Register({ dispatch, register }) {
   useInjectReducer({ key: "register", reducer });
   useInjectSaga({ key: "register", saga });
 
@@ -30,7 +30,7 @@ export function Register({ dispatch }) {
 
   const handleRegistr = (evt) => {
     evt.preventDefault();
-    dispatch(registerUser({ email: email, password: password }))
+    dispatch(registerUser({ email: email, password: password }));
   }
 
   return (
@@ -61,7 +61,8 @@ Register.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  register: makeSelectRegister()
+  register: makeSelectRegister(),
+  registrationSuccess: makeSelectRegisterSuccess(),
 });
 
 function mapDispatchToProps(dispatch) {
