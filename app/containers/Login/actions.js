@@ -12,11 +12,11 @@ export function defaultAction() {
   };
 }
 
-export function setLogout() {
-  return {
-    type: SET_LOGOUT
-  };
-}
+// export function setLogout() {
+//   return {
+//     type: SET_LOGOUT
+//   };
+// }
 
 export function login(payload) {
   return {
@@ -26,9 +26,9 @@ export function login(payload) {
 }
 
 
-export function setLogin(payload) {
-  return {
-    type: SET_LOGIN,
-    payload
-  };
-}
+// export function setLogin(payload) {
+//   return {
+//     type: SET_LOGIN,
+//     payload
+//   };
+// }

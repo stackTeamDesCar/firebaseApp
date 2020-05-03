@@ -4,7 +4,7 @@
  *
  */
 import produce from "immer";
-import { DEFAULT_ACTION, SET_LOGOUT, SET_LOGIN } from "./constants";
+import { DEFAULT_ACTION, SET_LOGOUT } from "./constants";
 
 export const initialState = { userData: null };
 
@@ -12,10 +12,9 @@ export const initialState = { userData: null };
 const loginReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case SET_LOGOUT:
-        draft.userData = '';
-      case SET_LOGIN:
-        draft.userData = action.payload;
+      
+      // case SET_LOGIN:
+      //   draft.userData = action.payload;
       case DEFAULT_ACTION:
         break;
     }

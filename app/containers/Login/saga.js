@@ -4,7 +4,8 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { makeSelectCredentials } from './selectors';
-import { setLogin, setLogout } from './actions';
+import { setLogout } from './actions';
+import { setLogin } from 'containers/App/actions';
 
 import firebase from 'firebase';
 import { SET_LOGOUT, LOGIN, AUTO_LOGIN } from './constants';
@@ -29,19 +30,18 @@ function* login({ user }) {
   }
 }
 
-function* logout() {
-  const db = yield firebase.database();
-  console.log('sagalogout')
-  try {
-    yield db.app.auth().signOut();
-    yield put(replace('/login'));
-  } catch (error) {
-  }
-}
+// function* logout() {
+//   const db = yield firebase.database();
+//   console.log('sagalogout')
+//   try {
+//     yield db.app.auth().signOut();
+//     yield put(replace('/login'));
+//   } catch (error) {
+//   }
+// }
 
 
 export default function* defaultSaga() {
   yield takeLatest(LOGIN, login);
-  yield takeLatest(SET_LOGOUT, logout);
 }
 
