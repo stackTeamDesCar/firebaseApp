@@ -12,6 +12,7 @@ import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
 import { login } from './actions';
+import { push } from 'connected-react-router';
 
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
@@ -46,7 +47,7 @@ export function Login({dispatch}) {
 
   const goToRegister = (evt) => {
     evt.preventDefault();
-    dispatch(login({ email: email, password: password })) //to change
+    dispatch(push('/register')); //to change
   }
 
   return (
@@ -60,7 +61,7 @@ export function Login({dispatch}) {
         <Grid item xs={4} style={{height:"100%"}}>
           <Wrapper flex direction="column" bg>
             <Typography variant="h1" gutterBottom color="textPrimary">Hello!</Typography>
-            <Typography variant="h6" gutterBottom color="textPrimary">Inserisci i tuoi dati personali e ciao</Typography>
+            <Typography variant="h6" gutterBottom color="textPrimary">Inserisci i tuoi dati personali e ciaone</Typography>
             <Btn text="Registrati" variant="outlined" border="white" onClick={goToRegister} />
           </Wrapper>
         </Grid>
