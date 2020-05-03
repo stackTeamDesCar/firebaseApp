@@ -17,8 +17,6 @@ export const initialState = {
   currentUser: false,
   userData: {
     repositories: false,
-    email:'',
-    password:'',
   },
 };
 
@@ -29,13 +27,11 @@ const appReducer = (state = initialState, action) =>
       case LOAD_REPOS:
         draft.loading = true;
         draft.error = false;
-        draft.userData.repositories = false;
         break;
 
       case LOAD_REPOS_SUCCESS:
         draft.userData.repositories = action.repos;
         draft.loading = false;
-        draft.currentUser = action.username;
         break;
 
       case LOAD_REPOS_ERROR:

@@ -13,10 +13,12 @@ function* registerUser({ userData }) {
   try {
     const rec = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
     if (rec) {//se la registrazione va bene, salvo i dati dell'utente in /users, con id come identificativo
-      const uid = yield db.app.auth().currentUser.uid;
+    console.log(rec)
+      const uid = rec.user.uid;
       db.ref('users/' + uid).set({
-        email: user.email,
-        password: user.password
+        email: userData.email,
+        password: userData.password,
+        id:  uid
       });
       yield put(replace('/login'));
     }

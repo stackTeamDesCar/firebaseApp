@@ -23,6 +23,7 @@ import {
 import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername, getDataList } from './actions';
+import { autoLogin} from '../App/actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -53,13 +54,13 @@ const sections = [
 
 import { HomeWrapper } from './styled';
 
-export function HomePage({ username, onSubmitForm, getData }) {
+export function HomePage({ username, onSubmitForm, getData,dispatch }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  // useEffect(() => {
-
-  // }, []);
+  useEffect(() => {
+    dispatch(autoLogin());
+  }, []);
 
 
   return <HomeWrapper>
@@ -103,6 +104,7 @@ export function mapDispatchToProps(dispatch) {
       dispatch(loadRepos());
     },
     getData: () => dispatch(getDataList()),
+    dispatch,
   };
 }
 
