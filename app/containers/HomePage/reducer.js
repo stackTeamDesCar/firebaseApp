@@ -19,9 +19,9 @@ export const initialState = {
 const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case CHANGE_USERNAME:
+      // case CHANGE_USERNAME:
         // Delete prefixed '@' from the github username
-        draft.username = action.username.replace(/@/gi, '');
+        // draft.username = action.username.replace(/@/gi, '');
       case GET_DATA_LIST:
         draft.pinco = 'pallino';
       

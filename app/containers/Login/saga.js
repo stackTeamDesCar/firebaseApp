@@ -10,31 +10,17 @@ import firebase from 'firebase';
 import { SET_LOGOUT, LOGIN, AUTO_LOGIN } from './constants';
 import { push, replace } from 'connected-react-router';
 
-// function* autoLogin() {
-//   const db = yield firebase.database();
+// const db =  firebase.database();
 
 
-//   const userData = yield select(makeSelectCredentials());
-//   yield console.log('userData', userData);
-//   try {
-//     if (userData) {
-//       db.app.auth().signInWithEmailAndPassword(userData.email, userData.password)
-//         .then(user => console.log(user))
-//         .catch(err => console.log(err));
-//     } else return;
-//   } catch (error) {
-//     yield console.log(error);
-//   }
-// }
-
-function* login({user}) {
+function* login({ user }) {
   const db = yield firebase.database();
   try {
     const signIn = yield db.app.auth().signInWithEmailAndPassword(user.email, user.password);
     console.log(signIn)
     if (signIn) {
       const uid = yield db.app.auth().currentUser.uid;
-      console.log(uid)
+ 
       yield put(setLogin({ email: user.email, password: user.password, id: uid }))
       yield put(replace('/'));
     }
@@ -46,9 +32,15 @@ function* login({user}) {
 
 function* logout() {
   const db = yield firebase.database();
+  console.log('sagalogout')
+  try {
+    yield db.app.auth().signOut();
+    yield put(replace('/login'));
+  } catch (error) {
 
-  yield db.app.auth().signOut();
-  yield put(setLogout())
+  }
+
+  // yield put(setLogout())
 }
 
 
