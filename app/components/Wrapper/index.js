@@ -6,18 +6,17 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    background: theme.palette.primary.main, //da cambiare
-    minHeight: '92vh',
+    minHeight: '100%',
     display: props => props.flex ? 'flex' : '',
     justifyContent: props => props.justify || 'center',
     alignItems: props => props.align || 'center',
-    flexDirection: props => props.direction || 'row'
+    flexDirection: props => props.direction || 'row',
+    backgroundColor: props => props.bg ? theme.colors.primary : '',
   },
 }));
 
 function Wrapper(props) {
   const classes = useStyles(props);
-  console.log(props)
     return (
           <Container  className={classes.root} maxWidth={props.maxWidth}>
             {props.children}

@@ -21,32 +21,52 @@ import saga from "./saga";
 import messages from "./messages";
 
 import Wrapper from 'components/Wrapper';
-import Input from 'components/Input';
+import Btn from 'components/Btn';
+
+import FormGroup from 'components/FormGroup';
+
 
 import Button from '@material-ui/core/Button';
-
+import Grid from '@material-ui/core/Grid';
+import { Typography } from "@material-ui/core";
+import Hidden from '@material-ui/core/Hidden';
 
 export function Login({dispatch}) {
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
 
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
   const handleLogin = (evt) => {
     evt.preventDefault();
     dispatch(login({ email: email, password: password }))
   }
 
+  const goToRegister = (evt) => {
+    evt.preventDefault();
+    dispatch(login({ email: email, password: password })) //to change
+  }
+
   return (
-    <Wrapper bg="primary" maxWidth="xl" flex direction="column" >
-      <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={e => setEmail(e.target.value)}></Input>
-      <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={e => setPassword(e.target.value)}></Input>
-      <Button variant="contained" onClick={handleLogin}>
-        Login
-      </Button>
-    </Wrapper>
+      <Grid container justify="center" alignItems="center" style={{height: '100vh'}}>
+        <Grid item xs={12} sm={8}>
+          <Wrapper>
+            <FormGroup title="Login" cta="Login" onClick={handleLogin} /> 
+          </Wrapper>
+        </Grid>
+        <Hidden smDown>
+        <Grid item xs={4} style={{height:"100%"}}>
+          <Wrapper flex direction="column" bg>
+            <Typography variant="h1" gutterBottom color="textPrimary">Hello!</Typography>
+            <Typography variant="h6" gutterBottom color="textPrimary">Inserisci i tuoi dati personali e ciao</Typography>
+            <Btn text="Registrati" variant="outlined" border="white" onClick={goToRegister} />
+          </Wrapper>
+        </Grid>
+        </Hidden>
+      
+      </Grid>
   );
 }
 

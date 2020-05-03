@@ -1,18 +1,19 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-const primary = '#1c1d25';
-const white = '#fff';
+const primary = '#4EAFBA';
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: primary,
-            text: white,
+          main: primary,
+          contrastText: '#ffffff'
         },
+        text: {
+          primary:'#ffffff',
+      },
     },
     colors: {
         primary,
-        white,
     },
     breakpoints: {
         values: {

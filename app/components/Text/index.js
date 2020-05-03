@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { TextWrapper } from './styled';
 
 
+
 function Text({ color, size, letterSpacing, bold, children }) {
 
     return <TextWrapper
