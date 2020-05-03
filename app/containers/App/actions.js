@@ -15,7 +15,7 @@
  *    }
  */
 
-import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR,AUTO_LOGIN } from './constants';
+import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR, AUTO_LOGIN, SET_LOGIN ,SET_LOGOUT} from './constants';
 
 /**
  * Load the repositories, this action starts the request saga
@@ -62,5 +62,17 @@ export function repoLoadingError(error) {
 export function autoLogin() {
   return {
     type: AUTO_LOGIN,
+  };
+}
+
+export function setLogin(payload) {
+  return {
+    type: SET_LOGIN,
+    payload
+  };
+}
+export function setLogout() {
+  return {
+    type: SET_LOGOUT,
   };
 }

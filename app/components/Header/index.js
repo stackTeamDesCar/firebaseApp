@@ -9,7 +9,7 @@ import { createStructuredSelector } from "reselect";
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-import { setLogout } from '../../containers/Login/actions';
+import { setLogout } from '../../containers/App/actions';
 
 function Header({dispatch}) {
 
