@@ -23,18 +23,12 @@ function* autoLogin() {
 
   auth.onAuthStateChanged(function (user) {
     if (user) { // Se utente risulta loggato
+
       //recupero id e lo uso per recuperare i dati da '/users'
       database.ref('/users/' + user.uid).on('value', function (snapshot) {
         put(setLogin(snapshot.val()))
       });
       replace('/');
-      // const displayName = user.displayName;
-      // const email = user.email;
-      // const emailVerified = user.emailVerified;
-      // const photoURL = user.photoURL;
-      // const isAnonymous = user.isAnonymous;
-      // const uid = user.uid;
-      // const providerData = user.providerData;
     } else { // Se utente non risulta loggato
       replace('/login');
     }
