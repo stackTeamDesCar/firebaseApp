@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo,useState } from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -32,7 +32,7 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 
-export function Login({dispatch,getData}) {
+export function Login({ dispatch, getData }) {
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
 
@@ -47,27 +47,27 @@ export function Login({dispatch,getData}) {
 
   const goToRegister = (evt) => {
     evt.preventDefault();
-    dispatch(push('/register')); //to change
+    dispatch(push('/register'));
   }
 
   return (
-      <Grid container justify="center" alignItems="center" style={{height: '100vh'}}>
-        <Grid item xs={12} sm={8}>
-          <Wrapper>
-            <FormGroup setPassword={e => setPassword(e.target.value)} setEmail={e => setEmail(e.target.value)} title="Login" cta="Login" getData={getData} onClick={handleLogin} /> 
-          </Wrapper>
-        </Grid>
-        <Hidden smDown>
-        <Grid item xs={4} style={{height:"100%"}}>
+    <Grid container justify="center" alignItems="center" style={{ height: '100vh' }}>
+      <Grid item xs={12} sm={8}>
+        <Wrapper>
+          <FormGroup setPassword={e => setPassword(e.target.value)} setEmail={e => setEmail(e.target.value)} title="Login" cta="Login" getData={getData} onClick={handleLogin} />
+        </Wrapper>
+      </Grid>
+      <Hidden smDown>
+        <Grid item xs={4} style={{ height: "100%" }}>
           <Wrapper flex direction="column" bg>
             <Typography variant="h1" gutterBottom color="textPrimary">Hello!</Typography>
             <Typography variant="h6" gutterBottom color="textPrimary">Inserisci i tuoi dati personali e ciaone</Typography>
             <Btn text="Registrati" variant="outlined" border="white" onClick={goToRegister} />
           </Wrapper>
         </Grid>
-        </Hidden>
-      
-      </Grid>
+      </Hidden>
+
+    </Grid>
   );
 }
 
