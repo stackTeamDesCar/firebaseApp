@@ -36,7 +36,7 @@ const makeSelectRepos = () =>
 const makeSelectCredentials = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.userData,
+    globalState => globalState.userData.email
   );
 
 

@@ -32,13 +32,13 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 
-export function Login({dispatch}) {
+export function Login({dispatch,getData}) {
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
 
 
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = (evt) => {
     evt.preventDefault();
@@ -54,7 +54,7 @@ export function Login({dispatch}) {
       <Grid container justify="center" alignItems="center" style={{height: '100vh'}}>
         <Grid item xs={12} sm={8}>
           <Wrapper>
-            <FormGroup title="Login" cta="Login" onClick={handleLogin} /> 
+            <FormGroup setPassword={e => setPassword(e.target.value)} setEmail={e => setEmail(e.target.value)} title="Login" cta="Login" getData={getData} onClick={handleLogin} /> 
           </Wrapper>
         </Grid>
         <Hidden smDown>

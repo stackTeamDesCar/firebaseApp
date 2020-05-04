@@ -7,8 +7,10 @@
  */
 
 
- 
+
 import React from 'react';
+// import { useSelector } from 'react-redux';
+
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
@@ -19,6 +21,8 @@ import Login from 'containers/Login/Loadable';
 import Register from 'containers/Register/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+
+import { makeSelectCredentials } from './selectors';
 
 import GlobalStyle from '../../global-styles';
 
@@ -32,6 +36,9 @@ const AppWrapper = styled.div`
 `;
 
 export default function App() {
+
+  // const {userData} = useSelector(makeSelectCredentials());
+  // console.log(userData)
   return (
     <AppWrapper>
       <Header />

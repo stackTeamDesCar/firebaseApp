@@ -15,17 +15,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FormGroup({title, cta, onClick, message }) {
+function FormGroup({title, cta, onClick,setEmail,setPassword, message }) {
   const classes = useStyles();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
     return (
           <div className={classes.root}>
             <Typography variant="h1" align="center" color="primary">{title}</Typography>
-            <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={e => setEmail(e.target.value)}></Input>
-            <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={e => setPassword(e.target.value)}></Input>
+            <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>
+            <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>
             <Btn variant="contained" onClick={onClick} color="primary" text={cta} />
             {message && <Typography variant="p">{message}</Typography>}     
           </div>
