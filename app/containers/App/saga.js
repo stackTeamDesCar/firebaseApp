@@ -4,7 +4,7 @@
 
 import { call, put, select, take, takeLatest } from 'redux-saga/effects';
 import { GET_DATA_LIST } from 'containers/HomePage/constants';
-import { AUTO_LOGIN,SET_LOGOUT } from 'containers/App/constants';
+import { AUTO_LOGIN, SET_LOGOUT } from 'containers/App/constants';
 import { login } from 'containers/Login/actions';
 import { setLogin } from './actions';
 import { makeSelectCredentials } from './selectors';
@@ -45,10 +45,10 @@ function* autoLogin() {
 
   const getId = new eventChannel(emiter => {
     const listener1 = auth.onAuthStateChanged(function (user) {
-      if(user){
+      if (user) {
         emiter({ id: user.uid || '' });
-      }else{
-        emiter({id:null})
+      } else {
+        emiter({ id: null })
       }
     });
 
@@ -59,11 +59,8 @@ function* autoLogin() {
 
 
   const { id } = yield take(getId);
-  console.log(id)
 
-  
-  if(!id){yield put(replace('/login'));} //se l'utente non è loggato reindirizzo al login
-
+  if (!id) { yield put(replace('/login')); }else{yield put(replace('/'))} //se l'utente non è loggato reindirizzo al login
 
   const getData = new eventChannel(emiter => {
     const listener2 = database.ref('/users/' + id).on('value', function (snapshot) {

@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -12,6 +12,7 @@ import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
 import { login } from './actions';
+import { autoLogin } from '../App/actions';
 import { push } from 'connected-react-router';
 
 import { useInjectSaga } from "utils/injectSaga";
@@ -40,6 +41,10 @@ export function Login({ dispatch, getData }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+    dispatch(autoLogin());
+  }, []);
+
   const handleLogin = (evt) => {
     evt.preventDefault();
     dispatch(login({ email: email, password: password }))
@@ -54,7 +59,14 @@ export function Login({ dispatch, getData }) {
     <Grid container justify="center" alignItems="center" style={{ height: '100vh' }}>
       <Grid item xs={12} sm={8}>
         <Wrapper>
-          <FormGroup setPassword={e => setPassword(e.target.value)} setEmail={e => setEmail(e.target.value)} title="Login" cta="Login" getData={getData} onClick={handleLogin} />
+          <FormGroup
+            setPassword={e => setPassword(e.target.value)}
+            setEmail={e => setEmail(e.target.value)}
+            title="Login"
+            cta="Login"
+            getData={getData}
+            onClick={handleLogin}
+          />
         </Wrapper>
       </Grid>
       <Hidden smDown>
