@@ -18,27 +18,6 @@ function* getData() {
   // });
 }
 
-// function* autoLogin() {
-//   console.log('autologin')
-//   const auth = yield firebase.auth();
-//   const database = firebase.database();
-
-//   auth.onAuthStateChanged(function (user) {
-//     if (user) { // Se utente risulta loggato
-
-//       //recupero id e lo uso per recuperare i dati da '/users'
-//       database.ref('/users/' + user.uid).on('value', function (snapshot) {
-//         const user = snapshot.val();
-//         put(setLogin(user));
-//       });
-//       replace('/');
-//     } else { // Se utente non risulta loggato
-//       replace('/login');
-//     }
-//   });
-
-// }
-
 function* autoLogin() {
   const auth = yield firebase.auth();
   const database = firebase.database();
@@ -51,22 +30,18 @@ function* autoLogin() {
         emiter({ id: null })
       }
     });
-
     return () => {
       listener1.off();
     };
   });
 
-
   const { id } = yield take(getId);
-
   if (!id) { yield put(replace('/login')); }else{yield put(replace('/'))} //se l'utente non è loggato reindirizzo al login
 
   const getData = new eventChannel(emiter => {
     const listener2 = database.ref('/users/' + id).on('value', function (snapshot) {
       emiter({ data: snapshot.val() || {} });
     });
-
     return () => {
       listener2.off();
     };
@@ -80,7 +55,7 @@ function* autoLogin() {
 
 function* logout() {
   const db = yield firebase.database();
-  console.log('sagalogout')
+  console.log('logout')
   try {
     yield db.app.auth().signOut();
     yield put(replace('/login'));
