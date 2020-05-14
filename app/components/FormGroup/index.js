@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FormGroup({ title, cta, onClick, setEmail, setPassword, message }) {
+function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, message, register }) {
   const classes = useStyles();
 
   return (
@@ -23,6 +23,8 @@ function FormGroup({ title, cta, onClick, setEmail, setPassword, message }) {
       <Typography variant="h1" align="center" color="primary">{title}</Typography>
       <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>
       <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>
+      {register && <Input label="City" type="text" variant="outlined" id="city" fullWidth onChange={setCity}></Input>}
+      {register && <Input label="Username" type="text" variant="outlined" id="username" fullWidth onChange={setUsername}></Input>}
       <Btn variant="contained" onClick={onClick} color="primary" text={cta} />
       {message && <Typography variant="p">{message}</Typography>}
     </div>

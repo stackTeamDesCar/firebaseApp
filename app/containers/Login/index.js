@@ -40,6 +40,9 @@ export function Login({ dispatch, getData }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [register, setRegister] = useState(false);
+  const [city, setCity] = useState('');
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     dispatch(autoLogin());
@@ -50,9 +53,17 @@ export function Login({ dispatch, getData }) {
     dispatch(login({ email: email, password: password }))
   }
 
-  const goToRegister = (evt) => {
+  const handleRegister = (evt) => {
+    // evt.preventDefault();
+    // dispatch(login({ email: email, password: password }))
+  }
+
+  const switchMode = (evt) => {
     evt.preventDefault();
-    dispatch(push('/register'));
+
+    setRegister(!register)
+    console.log(register)
+
   }
 
   return (
@@ -62,10 +73,13 @@ export function Login({ dispatch, getData }) {
           <FormGroup
             setPassword={e => setPassword(e.target.value)}
             setEmail={e => setEmail(e.target.value)}
-            title="Login"
-            cta="Login"
+            setCity={e => setCity(e.target.value)}
+            setUsername={e => setUsername(e.target.value)}
+            title={register ? "Register" : "Login"}
+            cta={register ? "Register" : "Login"}
+            register={register}
             getData={getData}
-            onClick={handleLogin}
+            onClick={register ? handleRegister : handleLogin}
           />
         </Wrapper>
       </Grid>
@@ -74,7 +88,7 @@ export function Login({ dispatch, getData }) {
           <Wrapper flex direction="column" bg>
             <Typography variant="h1" gutterBottom color="textPrimary">Hello!</Typography>
             <Typography variant="h6" gutterBottom color="textPrimary">Inserisci i tuoi dati personali e ciaone</Typography>
-            <Btn text="Registrati" variant="outlined" border="white" onClick={goToRegister} />
+            <Btn text={register ? "Login" : "Registrati"} variant="outlined" border="white" onClick={switchMode} />
           </Wrapper>
         </Grid>
       </Hidden>
