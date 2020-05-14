@@ -8,11 +8,12 @@
  */
 
 import produce from 'immer';
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR, SET_LOGIN,SET_LOGOUT } from './constants';
+import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR, SET_LOGIN,SET_LOGOUT, SET_LOADING } from './constants';
 
 // The initial state of the App
 export const initialState = {
   userData: {},
+  loading: true,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -37,6 +38,9 @@ const appReducer = (state = initialState, action) =>
         break;
       case SET_LOGOUT:
         draft.userData = '';
+        break;
+      case SET_LOADING:
+          draft.loading = action.payload;
         break;
 
     }

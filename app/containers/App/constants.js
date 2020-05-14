@@ -15,3 +15,4 @@ export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
 export const AUTO_LOGIN = 'boilerplate/App/AUTO_LOGIN';
 export const SET_LOGIN = 'boilerplate/App/SET_LOGIN';
 export const SET_LOGOUT = 'boilerplate/App/SET_LOGOUT';
+export const SET_LOADING = 'boilerplate/App/SET_LOADING';

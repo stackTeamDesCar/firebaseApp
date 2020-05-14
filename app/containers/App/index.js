@@ -49,7 +49,6 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={AccessPage} />
       </Switch>
-      
       <GlobalStyle />
     </AppWrapper>
   );

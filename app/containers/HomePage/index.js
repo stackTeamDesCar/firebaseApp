@@ -11,7 +11,6 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import {
@@ -19,7 +18,6 @@ import {
   makeSelectLoading,
   makeSelectError,
 } from 'containers/App/selectors';
-
 import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername, getDataList } from './actions';
@@ -27,11 +25,10 @@ import { autoLogin} from '../App/actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
 import Section from 'components/Section';
 import Icon from 'components/Icon';
 import Text from 'components/Text';
-
+import LoadingIndicator from 'components/LoadingIndicator';
 const key = 'home';
 import tasks from '../../assets/svg/tasks.svg';
 import calendar from '../../assets/svg/calendar.svg';
@@ -54,7 +51,7 @@ const sections = [
 
 import { HomeWrapper } from './styled';
 
-export function HomePage({ username, onSubmitForm, getData,dispatch }) {
+export function HomePage({ username, onSubmitForm, getData,dispatch, loading }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -63,21 +60,27 @@ export function HomePage({ username, onSubmitForm, getData,dispatch }) {
   }, []);
 
 
-  return <HomeWrapper>
-    {sections.map((el, index) => <Section
-      key={index}
-      display="flex"
-      justify="center"
-      align="center"
-      direction="column"
-      width="33.33"
-      height="100"
-      background="#bdc3c7"
-      hover >
-      <Icon size="4" icon={el.icon} hover />
-      <Text size="1" letterSpacing >{el.name}</Text>
-    </Section>)}
-  </HomeWrapper>
+  return (
+    <React.Fragment>
+      {loading ? <LoadingIndicator /> :
+      <HomeWrapper>
+        {sections.map((el, index) => <Section
+          key={index}
+          display="flex"
+          justify="center"
+          align="center"
+          direction="column"
+          width="33.33"
+          height="100"
+          background="#bdc3c7"
+          hover >
+          <Icon size="4" icon={el.icon} hover />
+          <Text size="1" letterSpacing >{el.name}</Text>
+        </Section>)}
+      </HomeWrapper>
+    }
+    </React.Fragment>
+  )
 }
 
 HomePage.propTypes = {
