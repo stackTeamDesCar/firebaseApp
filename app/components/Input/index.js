@@ -7,17 +7,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     border: '1px solid white',
     margin: '1rem',
-    color: '#fff',
     width: '30%',
 
   },
+  field: {
+    color: 'red',
+  }
 }));
 
 
 function Input({ id, label, variant, onChange, type,value, fullWidth }) {
   const classes = useStyles();
   return (
-    <TextField id={id} type={type} value={value} label={label} variant={variant} onChange={onChange} className={classes.root} size="large" />
+    <TextField classNameC={classes.field} id={id} type={type} value={value} label={label} variant={variant} onChange={onChange} className={classes.root} size="large" />
   );
 }
 
