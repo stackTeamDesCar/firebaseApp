@@ -33,7 +33,9 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 
+
 export function Login({ dispatch, getData }) {
+
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
 
@@ -86,13 +88,18 @@ export function Login({ dispatch, getData }) {
       <Hidden smDown>
         <Grid item xs={4} style={{ height: "100%" }}>
           <Wrapper flex direction="column" bg>
+<<<<<<< HEAD
             <Typography variant="h1" gutterBottom color="textPrimary">Hello!</Typography>
             <Typography variant="h6" gutterBottom color="textPrimary">Inserisci i tuoi dati personali e ciaone</Typography>
             <Btn text={register ? "Login" : "Registrati"} variant="outlined" border="white" onClick={switchMode} />
+=======
+            <Typography variant="h1" gutterBottom >Hello!</Typography>
+            <Typography variant="h6" gutterBottom  >Inserisci i tuoi dati personali e ciaone</Typography>
+            <Btn text="Registrati" variant="outlined" border="white" onClick={goToRegister} />
+>>>>>>> 315bd08049799428c8d1b582c9fab17607593220
           </Wrapper>
         </Grid>
       </Hidden>
-
     </Grid>
   );
 }
