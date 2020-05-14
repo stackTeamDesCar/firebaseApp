@@ -6,7 +6,7 @@
 import produce from "immer";
 import { DEFAULT_ACTION, SET_LOGOUT } from "./constants";
 
-export const initialState = { userData: null };
+export const initialState = {};
 
 /* eslint-disable default-case, no-param-reassign */
 const loginReducer = (state = initialState, action) =>

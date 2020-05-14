@@ -12,9 +12,6 @@ import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR, SET_LOGIN,SET_LOGOUT 
 
 // The initial state of the App
 export const initialState = {
-  loading: false,
-  error: false,
-  currentUser: false,
   userData: {},
 };
 
