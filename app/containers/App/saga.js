@@ -5,7 +5,7 @@
 import { call, put, select, take, takeLatest } from 'redux-saga/effects';
 import { GET_DATA_LIST } from 'containers/HomePage/constants';
 import { AUTO_LOGIN, SET_LOGOUT } from 'containers/App/constants';
-import { login } from 'containers/Login/actions';
+import { login } from 'containers/AccessPage/actions';
 import { setLogin } from './actions';
 import { makeSelectCredentials } from './selectors';
 import { eventChannel } from 'redux-saga'
@@ -36,7 +36,7 @@ function* autoLogin() {
   });
 
   const { id } = yield take(getId);
-  if (!id) { yield put(replace('/login')); }else{yield put(replace('/'))} //se l'utente non è loggato reindirizzo al login
+  if (!id) { yield put(replace('/')); }else{yield put(replace('/homepage'))} //se l'utente non è loggato reindirizzo al login
 
   const getData = new eventChannel(emiter => {
     const listener2 = database.ref('/users/' + id).on('value', function (snapshot) {
@@ -58,7 +58,7 @@ function* logout() {
   console.log('logout')
   try {
     yield db.app.auth().signOut();
-    yield put(replace('/login'));
+    yield put(replace('/'));
   } catch (error) {
   }
 }

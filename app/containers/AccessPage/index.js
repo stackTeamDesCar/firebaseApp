@@ -8,7 +8,6 @@ import React, { memo, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
 import { login } from './actions';
@@ -34,7 +33,7 @@ import { Typography } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 
 
-export function Login({ dispatch, getData }) {
+export function AccessPage({ dispatch, getData }) {
 
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
@@ -91,7 +90,6 @@ export function Login({ dispatch, getData }) {
             <Typography variant="h1" gutterBottom >Hello!</Typography>
             <Typography variant="h6" gutterBottom >Inserisci i tuoi dati personali e ciaone</Typography>
             <Btn text={register ? "Login" : "Registrati"} variant="outlined" border="white" onClick={switchMode} />
-
           </Wrapper>
         </Grid>
       </Hidden>
@@ -99,7 +97,7 @@ export function Login({ dispatch, getData }) {
   );
 }
 
-Login.propTypes = {
+AccessPage.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
@@ -121,4 +119,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo
-)(Login);
+)(AccessPage);

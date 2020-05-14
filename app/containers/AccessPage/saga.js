@@ -13,7 +13,6 @@ import { push, replace } from 'connected-react-router';
 
 // const db =  firebase.database();
 
-
 function* login({ user }) {
   const db = yield firebase.database();
   try {
@@ -23,23 +22,12 @@ function* login({ user }) {
       const uid = yield db.app.auth().currentUser.uid;
 
       yield put(setLogin({ email: user.email, password: user.password, id: uid }))
-      yield put(replace('/'));
+      yield put(replace('/homepage'));
     }
   } catch (error) {
     console.log(error)
   }
 }
-
-// function* logout() {
-//   const db = yield firebase.database();
-//   console.log('sagalogout')
-//   try {
-//     yield db.app.auth().signOut();
-//     yield put(replace('/login'));
-//   } catch (error) {
-//   }
-// }
-
 
 export default function* defaultSaga() {
   yield takeLatest(LOGIN, login);

@@ -17,10 +17,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
-import Login from 'containers/Login/Loadable';
-import Register from 'containers/Register/Loadable';
+import AccessPage from 'containers/AccessPage/Loadable';
 import Header from 'components/Header';
-import Footer from 'components/Footer';
 
 import { makeSelectCredentials } from './selectors';
 
@@ -43,18 +41,15 @@ export default function App() {
     <AppWrapper>
       <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/homepage" component={HomePage} />
       </Switch>
       <Switch>
         <Route exact path="/profile" component={Profile} />
       </Switch>
       <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={AccessPage} />
       </Switch>
-      <Switch>
-        <Route exact path="/register" component={Register} />
-      </Switch>
-      {/* <Footer /> */}
+      
       <GlobalStyle />
     </AppWrapper>
   );
