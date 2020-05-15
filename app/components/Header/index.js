@@ -6,14 +6,13 @@ import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import { createStructuredSelector } from "reselect";
 
-import {makeSelectCredentials} from '../../containers/App/selectors';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 import { setLogout } from '../../containers/App/actions';
 
-function Header({dispatch,logged}) {
+function Header({ dispatch }) {
 
   const onLogout = () => {
     dispatch(setLogout())
@@ -21,14 +20,14 @@ function Header({dispatch,logged}) {
 
   return (
     <div>
-      {logged && <NavBar>
+      <NavBar>
         <HeaderLink to="/profile">
           <FormattedMessage {...messages.profile} />
         </HeaderLink>
         <HeaderLink onClick={onLogout}>
           <FormattedMessage {...messages.logout} />
         </HeaderLink>
-      </NavBar>}
+      </NavBar>
     </div>
   );
 }
@@ -38,7 +37,6 @@ Header.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  logged: makeSelectCredentials(),
 });
 
 function mapDispatchToProps(dispatch) {

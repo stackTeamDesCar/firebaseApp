@@ -52,7 +52,7 @@ const sections = [
 
 import { HomeWrapper } from './styled';
 
-export function HomePage({ username, onSubmitForm, getData, dispatch, loading, userData }) {
+export function HomePage({ username, onSubmitForm, getData, dispatch, loading }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -63,7 +63,9 @@ export function HomePage({ username, onSubmitForm, getData, dispatch, loading, u
 
   return (
     <React.Fragment>
-      {loading || !userData ? <LoadingIndicator /> :
+      {loading  ?
+        <LoadingIndicator />
+        :
         <HomeWrapper>
           {sections.map((el, index) => <Section
             key={index}
@@ -97,7 +99,6 @@ const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
-  userData: makeSelectCredentials(),
   error: makeSelectError(),
 });
 
