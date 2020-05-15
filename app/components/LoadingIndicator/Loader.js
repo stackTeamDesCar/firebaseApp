@@ -9,7 +9,7 @@ const rotateLoading = keyframes`
     }
 `;
 
-const Loader = props => {
+const Loader = (props) => {
     const LoadingImg = styled.img`
         transform: rotate(360deg);
         animation: ${rotateLoading} 1.6s infinite linear;
