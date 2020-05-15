@@ -8,7 +8,7 @@ import { setLogout } from './actions';
 import { setLogin } from 'containers/App/actions';
 
 import firebase from 'firebase';
-import { SET_LOGOUT, LOGIN, AUTO_LOGIN } from './constants';
+import { SIGNIN, LOGIN,  } from './constants';
 import { push, replace } from 'connected-react-router';
 
 // const db =  firebase.database();
@@ -16,12 +16,11 @@ import { push, replace } from 'connected-react-router';
 function* login({ user }) {
   const db = yield firebase.database();
   try {
-    const signIn = yield db.app.auth().signInWithEmailAndPassword(user.email, user.password);
-    console.log(signIn)
-    if (signIn) {
+    const data = yield db.app.auth().signInWithEmailAndPassword(user.email, user.password);
+    if (data) {
       const uid = yield db.app.auth().currentUser.uid;
 
-      yield put(setLogin({ email: user.email, password: user.password, id: uid }))
+      yield put(setLogin({ email: user.email, id: uid }))
       yield put(replace('/homepage'));
     }
   } catch (error) {
@@ -29,7 +28,29 @@ function* login({ user }) {
   }
 }
 
+function* signIn({ userData }) {
+  const db = yield firebase.database();
+  try {
+    const rec = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
+    if (rec) {//se la registrazione va bene, salvo i dati dell'utente in /users, con id come identificativo
+    console.log(rec)
+      const uid = rec.user.uid;
+      db.ref('users/' + uid).set({
+        email: userData.email,
+        password: userData.password,
+        id:  uid
+      });
+      yield put(replace('/homepage'));
+    }
+  }
+  catch (error) {
+    console.log(error)
+  }
+}
+
 export default function* defaultSaga() {
   yield takeLatest(LOGIN, login);
+  yield takeLatest(SIGNIN, signIn);
+
 }
 

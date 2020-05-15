@@ -11,6 +11,7 @@ import { makeSelectCredentials } from './selectors';
 import { eventChannel } from 'redux-saga'
 import firebase from 'firebase';
 import { replace } from 'connected-react-router';
+import { omit } from 'lodash';
 
 function* getData() {
   // yield database.ref('/utenti').on('value', function (snapshot) {
@@ -55,7 +56,8 @@ function* autoLogin() {
 
   while (true) {
     const { data } = yield take(getData);
-    yield put(setLogin(data));
+    console.log('cc', data);
+    yield put(setLogin(_.omit(data, 'password')));
   }
 }
 

@@ -10,13 +10,11 @@ import { connect, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
-import { login } from './actions';
+import { login, signIn } from './actions';
 import { autoLogin, setLoading } from '../App/actions';
 import { push } from 'connected-react-router';
-
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
-import makeSelectLogin from "./selectors";
 import { makeSelectLoading } from "../App/selectors";
 
 import reducer from "./reducer";
@@ -61,17 +59,16 @@ export function AccessPage({ dispatch, getData, loading }) {
   }
 
   const handleRegister = (evt) => {
-    // evt.preventDefault();
-    // dispatch(login({ email: email, password: password }))
+    evt.preventDefault();
+    dispatch(signIn({ email: email, password: password, city: city, username: username }))
   }
 
   const switchMode = (evt) => {
     evt.preventDefault();
-
     setRegister(!register)
+
     console.log(register)
   }
-
 
 
   return (
@@ -81,7 +78,7 @@ export function AccessPage({ dispatch, getData, loading }) {
         <Grid container justify="center" alignItems="center" style={{ height: '100vh' }}>
           <Grid item xs={12} sm={8}>
             <Wrapper>
-              <FormGroup
+                <FormGroup
                 setPassword={e => setPassword(e.target.value)}
                 setEmail={e => setEmail(e.target.value)}
                 setCity={e => setCity(e.target.value)}
@@ -92,6 +89,8 @@ export function AccessPage({ dispatch, getData, loading }) {
                 getData={getData}
                 onClick={register ? handleRegister : handleLogin}
               />
+
+            
             </Wrapper>
           </Grid>
           <Hidden smDown>
@@ -115,7 +114,6 @@ AccessPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  login: makeSelectLogin(),
   loading: makeSelectLoading()
 });
 

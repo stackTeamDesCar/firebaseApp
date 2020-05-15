@@ -1,21 +1,32 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-import svg from '../../assets/svg/loading.svg';
+const useStyles = makeStyles((theme) => ({
+  root: {
+   
+  },
+}));
 
-const rotateLoading = keyframes`    
-    from{
-        transform: rotate(0deg);
+export default function Loader() {
+  const classes = useStyles();
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    function tick() {
+      // reset when reaching 100%
+      setProgress((oldProgress) => (oldProgress >= 100 ? 0 : oldProgress + 1));
     }
-`;
 
-const Loader = props => {
-    const LoadingImg = styled.img`
-        transform: rotate(360deg);
-        animation: ${rotateLoading} 1.6s infinite linear;
-    }
-    `;
-    return <LoadingImg width="50" src={svg} />;
-};
+    const timer = setInterval(tick, 20);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-export default Loader;
+  return (
+    <div className={classes.root}>
+      <CircularProgress variant="determinate" value={progress} />
+    </div>
+  );
+}

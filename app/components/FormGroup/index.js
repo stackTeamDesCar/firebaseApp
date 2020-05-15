@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     color: 'red',
+    transition: 'all 1s'
   },
 }));
 

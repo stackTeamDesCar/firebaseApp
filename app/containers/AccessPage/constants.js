@@ -4,8 +4,7 @@
  *
  */
 
-export const DEFAULT_ACTION = "app/Login/DEFAULT_ACTION";
-// export const SET_LOGOUT = "app/Login/SET_LOGOUT";
-// export const SET_LOGIN = "app/Login/SET_LOGIN";
-export const LOGIN = "app/Login/LOGIN";
-export const AUTO_LOGIN = "app/Login/AUTO_LOGIN";
+export const DEFAULT_ACTION = "app/AccessPage/DEFAULT_ACTION";
+export const LOGIN = "app/AccessPage/LOGIN";
+export const SIGNIN = "app/AccessPage/REGISTRATION";
+export const AUTO_LOGIN = "app/AccessPage/AUTO_LOGIN";

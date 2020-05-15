@@ -17,12 +17,6 @@ const selectGlobal = state => state.global || initialState;
  * Default selector used by Login
  */
 
-const makeSelectLogin = () =>
-  createSelector(
-    selectLoginDomain,
-    substate => substate
-  );
-
   const makeSelectCredentials = () =>
   createSelector(
     selectGlobal,
@@ -30,5 +24,4 @@ const makeSelectLogin = () =>
   );
 
 
-export default makeSelectLogin;
 export { selectLoginDomain,makeSelectCredentials };
