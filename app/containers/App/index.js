@@ -21,23 +21,22 @@ import Profile from 'containers/Profile/Loadable';
 import AccessPage from 'containers/AccessPage/Loadable';
 import Header from 'components/Header';
 
-import { makeSelectLocation, makeSelectCredentials } from './selectors';
+import { makeSelectLocation } from './selectors';
 
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div``;
 
-export function App({ location, logged }) {
-
+export function App({ location }) {
   return (
     <AppWrapper>
-      {location.pathname !== '/' && logged && <Header />}
-      {logged && <Switch>
+      {location.pathname !== '/' && <Header />}
+      <Switch>
         <Route exact path="/homepage" component={HomePage} />
-      </Switch>}
-      {logged && <Switch>
+      </Switch>
+      <Switch>
         <Route exact path="/profile" component={Profile} />
-      </Switch>}
+      </Switch>
       <Switch>
         <Route exact path="/" component={AccessPage} />
       </Switch>
@@ -47,7 +46,6 @@ export function App({ location, logged }) {
 }
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
-  logged: makeSelectCredentials(),
 });
 
 export function mapDispatchToProps(dispatch) {
