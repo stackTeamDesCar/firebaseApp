@@ -21,8 +21,9 @@ import {
 import messages from './messages';
 import { loadRepos } from '../App/actions';
 import { changeUsername, getDataList } from './actions';
-import { autoLogin} from '../App/actions';
+import { autoLogin } from '../App/actions';
 import { makeSelectUsername } from './selectors';
+import { makeSelectCredentials } from '../App/selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Section from 'components/Section';
@@ -51,7 +52,7 @@ const sections = [
 
 import { HomeWrapper } from './styled';
 
-export function HomePage({ username, onSubmitForm, getData,dispatch, loading }) {
+export function HomePage({ username, onSubmitForm, getData, dispatch, loading, userData }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -62,23 +63,23 @@ export function HomePage({ username, onSubmitForm, getData,dispatch, loading }) 
 
   return (
     <React.Fragment>
-      {loading ? <LoadingIndicator /> :
-      <HomeWrapper>
-        {sections.map((el, index) => <Section
-          key={index}
-          display="flex"
-          justify="center"
-          align="center"
-          direction="column"
-          width="33.33"
-          height="100"
-          background="#bdc3c7"
-          hover >
-          <Icon size="4" icon={el.icon} hover />
-          <Text size="1" letterSpacing >{el.name}</Text>
-        </Section>)}
-      </HomeWrapper>
-    }
+      {loading || !userData ? <LoadingIndicator /> :
+        <HomeWrapper>
+          {sections.map((el, index) => <Section
+            key={index}
+            display="flex"
+            justify="center"
+            align="center"
+            direction="column"
+            width="33.33"
+            height="100"
+            background="#bdc3c7"
+            hover >
+            <Icon size="4" icon={el.icon} hover />
+            <Text size="1" letterSpacing >{el.name}</Text>
+          </Section>)}
+        </HomeWrapper>
+      }
     </React.Fragment>
   )
 }
@@ -96,6 +97,7 @@ const mapStateToProps = createStructuredSelector({
   repos: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
+  userData: makeSelectCredentials(),
   error: makeSelectError(),
 });
 

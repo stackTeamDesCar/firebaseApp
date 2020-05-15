@@ -35,8 +35,6 @@ const AppWrapper = styled.div`
 
 export default function App() {
 
-  // const {userData} = useSelector(makeSelectCredentials());
-  // console.log(userData)
   return (
     <AppWrapper>
       <Header />
