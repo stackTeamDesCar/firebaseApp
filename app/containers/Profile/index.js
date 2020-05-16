@@ -21,15 +21,11 @@ import messages from "./messages";
 
 export function Profile() {
   useInjectReducer({ key: "profile", reducer });
-  useInjectSaga({ key: "profile", saga });
+  // useInjectSaga({ key: "profile", saga });
 
   return (
     <div>
-      <Helmet>
-        <title>Profile</title>
-        <meta name="description" content="Description of Profile" />
-      </Helmet>
-      <FormattedMessage {...messages.header} />
+            
     </div>
   );
 }

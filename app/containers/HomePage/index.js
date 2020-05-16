@@ -31,9 +31,11 @@ import Icon from 'components/Icon';
 import Text from 'components/Text';
 import LoadingIndicator from 'components/LoadingIndicator';
 const key = 'home';
+
 import tasks from '../../assets/svg/tasks.svg';
 import calendar from '../../assets/svg/calendar.svg';
 import chat from '../../assets/svg/chat.svg';
+
 
 const sections = [
   {
@@ -77,6 +79,7 @@ export function HomePage({ username, onSubmitForm, getData, dispatch, loading, u
             hover >
             <Icon size="4" icon={el.icon} hover />
             <Text size="1" letterSpacing >{el.name}</Text>
+           
           </Section>)}
         </HomeWrapper>
       }
