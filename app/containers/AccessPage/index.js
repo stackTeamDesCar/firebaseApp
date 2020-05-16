@@ -55,19 +55,19 @@ export function AccessPage({ dispatch, getData, loading }) {
 
   const handleLogin = (evt) => {
     evt.preventDefault();
+    dispatch(setLoading(true));
     dispatch(login({ email: email, password: password }))
   }
 
   const handleRegister = (evt) => {
     evt.preventDefault();
+    dispatch(setLoading(true));
     dispatch(signIn({ email: email, password: password, city: city, username: username }))
   }
 
   const switchMode = (evt) => {
     evt.preventDefault();
-    setRegister(!register)
-
-    console.log(register)
+    setRegister(!register);
   }
 
 

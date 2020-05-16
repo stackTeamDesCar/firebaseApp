@@ -56,7 +56,6 @@ function* autoLogin() {
 
   while (true) {
     const { data } = yield take(getData);
-    console.log('cc', data);
     yield put(setLogin(_.omit(data, 'password')));
   }
 }
