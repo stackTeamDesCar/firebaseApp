@@ -41,17 +41,14 @@ export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [register, setRegister] = useState(false);
   const [city, setCity] = useState('');
   const [username, setUsername] = useState('');
-  // const [err, setError] = useState(false);
 
   useEffect(() => {
     dispatch(autoLogin());
     if (loading) setTimeout(() => {
       dispatch(setLoading(false));
     }, 1000)
-    console.log('err', error)
   }, loading, error);
 
   const handleLogin = (evt) => {
@@ -86,7 +83,7 @@ export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
                 setUsername={e => setUsername(e.target.value)}
                 title={accessMode === 'signin' ? "Sign in" : "Login"}
                 cta={accessMode === 'signin' ? "Sign in" : "Login"}
-                register={accessMode === 'signin'}
+                accessMode={accessMode === 'signin'}
                 getData={getData}
                 onClick={accessMode === 'signin' ? handleRegister : handleLogin}
                 error={error}
