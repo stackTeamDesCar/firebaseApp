@@ -15,7 +15,7 @@
  *    }
  */
 
-import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR, AUTO_LOGIN, SET_LOGIN ,SET_LOGOUT, SET_LOADING} from './constants';
+import { LOAD_REPOS, LOAD_REPOS_SUCCESS, LOAD_REPOS_ERROR, AUTO_LOGIN, SET_LOGIN, SET_LOGOUT, SET_LOADING, SET_SWITCH_LOGIN } from './constants';
 
 /**
  * Load the repositories, this action starts the request saga
@@ -80,6 +80,13 @@ export function setLogout() {
 export function setLoading(payload) {
   return {
     type: SET_LOADING,
+    payload,
+  };
+}
+
+export function setSwitchLogin(payload) {
+  return {
+    type: SET_SWITCH_LOGIN,
     payload,
   };
 }

@@ -17,12 +17,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, message, register }) {
+function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, message, register,error }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Typography variant="h1" align="center" color="primary">{title}</Typography>
+      {error && <h6>Ci sono stati errori,riprova!</h6>}
       <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>
       <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>
       {register && <Input label="City" type="text" variant="outlined" id="city" fullWidth onChange={setCity}></Input>}

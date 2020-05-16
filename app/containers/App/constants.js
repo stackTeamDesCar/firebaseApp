@@ -16,3 +16,4 @@ export const AUTO_LOGIN = 'boilerplate/App/AUTO_LOGIN';
 export const SET_LOGIN = 'boilerplate/App/SET_LOGIN';
 export const SET_LOGOUT = 'boilerplate/App/SET_LOGOUT';
 export const SET_LOADING = 'boilerplate/App/SET_LOADING';
+export const SET_SWITCH_LOGIN = 'boilerplate/App/SET_SWITCH_LOGIN';

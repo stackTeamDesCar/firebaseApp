@@ -10,12 +10,13 @@ import { connect, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
-import { login, signIn } from './actions';
+import { login, signIn, setError } from './actions';
 import { autoLogin, setLoading } from '../App/actions';
 import { push } from 'connected-react-router';
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
-import { makeSelectLoading } from "../App/selectors";
+import { makeSelectLoading, makeSelectSwitchLogin } from "../App/selectors";
+import { makeSelectErrorLogin } from "./selectors";
 
 import reducer from "./reducer";
 import saga from "./saga";
@@ -34,7 +35,7 @@ import { Typography } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 
 
-export function AccessPage({ dispatch, getData, loading }) {
+export function AccessPage({ dispatch, getData, loading, error }) {
 
   useInjectReducer({ key: "login", reducer });
   useInjectSaga({ key: "login", saga });
@@ -45,13 +46,15 @@ export function AccessPage({ dispatch, getData, loading }) {
   const [register, setRegister] = useState(false);
   const [city, setCity] = useState('');
   const [username, setUsername] = useState('');
+  // const [err, setError] = useState(false);
 
   useEffect(() => {
     dispatch(autoLogin());
     if (loading) setTimeout(() => {
       dispatch(setLoading(false));
     }, 1000)
-  }, loading);
+    console.log('err', error)
+  }, loading, error);
 
   const handleLogin = (evt) => {
     evt.preventDefault();
@@ -61,24 +64,27 @@ export function AccessPage({ dispatch, getData, loading }) {
 
   const handleRegister = (evt) => {
     evt.preventDefault();
-    dispatch(setLoading(true));
-    dispatch(signIn({ email: email, password: password, city: city, username: username }))
+    dispatch(signIn({ email: email, password: password, city: city, username: username }));
+    if (!error) dispatch(setLoading(true));
   }
 
   const switchMode = (evt) => {
     evt.preventDefault();
+    dispatch(setError(false));
     setRegister(!register);
-  }
 
+  }
 
   return (
     <React.Fragment>
-      
-      {loading ? <LoadingIndicator /> :
+
+      {loading ?
+        <LoadingIndicator />
+        :
         <Grid container justify="center" alignItems="center" style={{ height: '100vh' }}>
           <Grid item xs={12} sm={8}>
             <Wrapper>
-                <FormGroup
+              <FormGroup
                 setPassword={e => setPassword(e.target.value)}
                 setEmail={e => setEmail(e.target.value)}
                 setCity={e => setCity(e.target.value)}
@@ -88,9 +94,8 @@ export function AccessPage({ dispatch, getData, loading }) {
                 register={register}
                 getData={getData}
                 onClick={register ? handleRegister : handleLogin}
+                error={error}
               />
-
-            
             </Wrapper>
           </Grid>
           <Hidden smDown>
@@ -103,9 +108,9 @@ export function AccessPage({ dispatch, getData, loading }) {
             </Grid>
           </Hidden>
         </Grid>
-}
+      }
     </React.Fragment>
-  
+
   );
 }
 
@@ -114,7 +119,9 @@ AccessPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  loading: makeSelectLoading()
+  loading: makeSelectLoading(),
+  switchLogin: makeSelectSwitchLogin(),
+  error: makeSelectErrorLogin(),
 });
 
 function mapDispatchToProps(dispatch) {

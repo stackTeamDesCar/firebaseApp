@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, LOGIN, SIGNIN } from "./constants";
+import { DEFAULT_ACTION, LOGIN, SIGNIN,SET_ERROR } from "./constants";
 
 export function defaultAction() {
   return {
@@ -23,6 +23,13 @@ export function signIn(payload) {
   return {
     type: SIGNIN,
     userData: payload
+  };
+}
+
+export function setError(payload) {
+  return {
+    type: SET_ERROR,
+    payload
   };
 }
 
