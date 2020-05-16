@@ -8,6 +8,8 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import accessPageReducer from 'containers/AccessPage/reducer';
+
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -17,6 +19,7 @@ export default function createReducer(injectedReducers = {}) {
     global: globalReducer,
     language: languageProviderReducer,
     router: connectRouter(history),
+    accessPage: accessPageReducer,
     ...injectedReducers,
   });
 

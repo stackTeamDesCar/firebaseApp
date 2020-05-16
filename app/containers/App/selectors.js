@@ -6,7 +6,7 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 const selectGlobal = state => state.global || initialState;
-
+const selectAccessPage = state => state.accessPage;
 const selectRouter = state => state.router;
 
 const makeSelectCurrentUser = () =>
@@ -39,11 +39,7 @@ const makeSelectCredentials = () =>
     globalState => globalState.userData.email
   );
 
-  const makeSelectSwitchLogin = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.switchLogin,
-  );
+
 
 
 
@@ -62,5 +58,4 @@ export {
   makeSelectRepos,
   makeSelectLocation,
   makeSelectCredentials,
-  makeSelectSwitchLogin,
 };

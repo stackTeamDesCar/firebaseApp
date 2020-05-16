@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, LOGIN, SIGNIN,SET_ERROR } from "./constants";
+import { DEFAULT_ACTION, LOGIN, SIGNIN, SET_ERROR, SET_ACCESS_MODE, SWITCH_ACCESS_MODE } from "./constants";
 
 export function defaultAction() {
   return {
@@ -30,6 +30,13 @@ export function setError(payload) {
   return {
     type: SET_ERROR,
     payload
+  };
+}
+
+export function setAccessMode(payload) {
+  return {
+    type: SET_ACCESS_MODE,
+    payload,
   };
 }
 

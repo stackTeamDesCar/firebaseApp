@@ -10,13 +10,13 @@ import { connect, useDispatch } from "react-redux";
 import { Helmet } from "react-helmet";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
-import { login, signIn, setError } from './actions';
+import { login, signIn, setError, setAccessMode } from './actions';
 import { autoLogin, setLoading } from '../App/actions';
 import { push } from 'connected-react-router';
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
 import { makeSelectLoading, makeSelectSwitchLogin } from "../App/selectors";
-import { makeSelectErrorLogin } from "./selectors";
+import { makeSelectErrorLogin, makeSelectAccessMode } from "./selectors";
 
 import reducer from "./reducer";
 import saga from "./saga";
@@ -35,10 +35,8 @@ import { Typography } from "@material-ui/core";
 import Hidden from '@material-ui/core/Hidden';
 
 
-export function AccessPage({ dispatch, getData, loading, error }) {
-
-  useInjectReducer({ key: "login", reducer });
-  // useInjectSaga({ key: "login", saga });
+export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
+  // useInjectReducer({ key: "login", reducer });
 
 
   const [email, setEmail] = useState("");
@@ -65,14 +63,11 @@ export function AccessPage({ dispatch, getData, loading, error }) {
   const handleRegister = (evt) => {
     evt.preventDefault();
     dispatch(signIn({ email: email, password: password, city: city, username: username }));
-    if (!error) dispatch(setLoading(true));
   }
 
-  const switchMode = (evt) => {
-    evt.preventDefault();
+  const switchMode = (mode) => {
     dispatch(setError(false));
-    setRegister(!register);
-
+    dispatch(setAccessMode(mode));
   }
 
   return (
@@ -89,11 +84,11 @@ export function AccessPage({ dispatch, getData, loading, error }) {
                 setEmail={e => setEmail(e.target.value)}
                 setCity={e => setCity(e.target.value)}
                 setUsername={e => setUsername(e.target.value)}
-                title={register ? "Register" : "Login"}
-                cta={register ? "Register" : "Login"}
-                register={register}
+                title={accessMode === 'signin' ? "Sign in" : "Login"}
+                cta={accessMode === 'signin' ? "Sign in" : "Login"}
+                register={accessMode === 'signin'}
                 getData={getData}
-                onClick={register ? handleRegister : handleLogin}
+                onClick={accessMode === 'signin' ? handleRegister : handleLogin}
                 error={error}
               />
             </Wrapper>
@@ -103,7 +98,7 @@ export function AccessPage({ dispatch, getData, loading, error }) {
               <Wrapper flex direction="column" bg>
                 <Typography variant="h1" gutterBottom >Hello!</Typography>
                 <Typography variant="h6" gutterBottom >Inserisci i tuoi dati personali e ciaone</Typography>
-                <Btn text={register ? "Login" : "Registrati"} variant="outlined" border="white" onClick={switchMode} />
+                <Btn text={accessMode === 'signin' ? "Login" : "Sign in"} variant="outlined" border="white" onClick={() => accessMode === 'login' ? switchMode('signin') : switchMode('login')} />
               </Wrapper>
             </Grid>
           </Hidden>
@@ -120,7 +115,7 @@ AccessPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
-  switchLogin: makeSelectSwitchLogin(),
+  accessMode: makeSelectAccessMode(),
   error: makeSelectErrorLogin(),
 });
 

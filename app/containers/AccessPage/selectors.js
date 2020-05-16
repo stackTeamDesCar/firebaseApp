@@ -5,8 +5,9 @@ import { initialState } from "./reducer";
  * Direct selector to the login state domain
  */
 
-const selectLoginDomain = state => state.login || initialState;
+// const selectLoginDomain = state => state.login || initialState;
 const selectGlobal = state => state.global || initialState;
+const selectAccessPage = state => state.accessPage;
 
 
 /**
@@ -22,12 +23,21 @@ const makeSelectCredentials = () =>
     selectGlobal,
     globalState => globalState.userData,
   );
+
 const makeSelectErrorLogin = () =>
   createSelector(
-    selectLoginDomain,
-    loginState => loginState.error,
+    selectAccessPage,
+    state => state.error,
   );
 
+const makeSelectAccessMode = () =>
+  createSelector(
+    selectAccessPage,
+    state => state.mode,
+  );
 
-
-export { selectLoginDomain, makeSelectCredentials, makeSelectErrorLogin };
+export { 
+  makeSelectCredentials, 
+  makeSelectErrorLogin ,
+  makeSelectAccessMode
+};

@@ -5,8 +5,8 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { makeSelectCredentials } from './selectors';
 import { setLogout, setError } from './actions';
-import { setLogin, setLoading, setSwitchLogin } from 'containers/App/actions';
-
+import { setLogin, setLoading } from 'containers/App/actions';
+import { setAccessMode } from 'containers/AccessPage/actions';
 import firebase from 'firebase';
 import { SIGNIN, LOGIN, } from './constants';
 import { push, replace } from 'connected-react-router';
@@ -39,12 +39,13 @@ function* signIn({ userData }) {
 
   const db = yield firebase.database();
   try {
-    const rec = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
-    if (rec) {//se la registrazione va bene, salvo i dati dell'utente in /users, con id come identificativo
+    const data = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
+    if (data) {//se la registrazione va bene, salvo i dati dell'utente in /users, con id come identificativo
+      yield put(setLoading(true));
 
       yield put(setError(false));
 
-      const uid = rec.user.uid;
+      const uid = data.user.uid;
       db.ref('users/' + uid).set({
         email: userData.email,
         password: userData.password,
@@ -53,13 +54,13 @@ function* signIn({ userData }) {
         username: userData.username
       });
       yield db.app.auth().signOut();
-      yield put(setSwitchLogin(true));
-    } else {
-      yield put(setError(true));
-    }
+      yield put(setAccessMode('login'));
+    } 
   }
   catch (error) {
     console.log(error)
+    yield put(setError(true));
+
   } finally {
     yield put(setLoading(false));
   }

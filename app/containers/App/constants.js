@@ -9,11 +9,10 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
-export const AUTO_LOGIN = 'boilerplate/App/AUTO_LOGIN';
-export const SET_LOGIN = 'boilerplate/App/SET_LOGIN';
-export const SET_LOGOUT = 'boilerplate/App/SET_LOGOUT';
-export const SET_LOADING = 'boilerplate/App/SET_LOADING';
-export const SET_SWITCH_LOGIN = 'boilerplate/App/SET_SWITCH_LOGIN';
+export const LOAD_REPOS = 'App/LOAD_REPOS';
+export const LOAD_REPOS_SUCCESS = 'App/LOAD_REPOS_SUCCESS';
+export const LOAD_REPOS_ERROR = 'App/LOAD_REPOS_ERROR';
+export const AUTO_LOGIN = 'App/AUTO_LOGIN';
+export const SET_LOGIN = 'App/SET_LOGIN';
+export const SET_LOGOUT = 'App/SET_LOGOUT';
+export const SET_LOADING = 'App/SET_LOADING';
