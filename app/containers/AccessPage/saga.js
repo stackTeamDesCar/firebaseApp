@@ -29,8 +29,8 @@ function* login({ user }) {
 
     }
   } catch (error) {
-    yield put(setLoading(false));
     yield put(setError(true));
+    yield put(setLoading(false));
     console.log(error)
   }
 }
@@ -53,16 +53,15 @@ function* signIn({ userData }) {
         username: userData.username
       });
       yield db.app.auth().signOut();
-      yield put(setLoading(false));
-
       yield put(setSwitchLogin(true));
+    } else {
+      yield put(setError(true));
     }
   }
   catch (error) {
-    yield put(setError(true));
-    yield put(setLoading(false));
-
     console.log(error)
+  } finally {
+    yield put(setLoading(false));
   }
 }
 

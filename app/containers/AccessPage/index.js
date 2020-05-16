@@ -38,7 +38,7 @@ import Hidden from '@material-ui/core/Hidden';
 export function AccessPage({ dispatch, getData, loading, error }) {
 
   useInjectReducer({ key: "login", reducer });
-  useInjectSaga({ key: "login", saga });
+  // useInjectSaga({ key: "login", saga });
 
 
   const [email, setEmail] = useState("");
