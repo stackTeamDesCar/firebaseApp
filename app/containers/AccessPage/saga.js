@@ -42,8 +42,9 @@ function* signIn({ userData }) {
     const data = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
     if (data) {//se la registrazione va bene, salvo i dati dell'utente in /users, con id come identificativo
       yield put(setLoading(true));
-
       yield put(setError(false));
+
+      ///qui devo recuperare foto e salvarla sullo storage di fb..poi una volta salvata recupero url e lo salvo in users/uid con gli altri dati
 
       const uid = data.user.uid;
       db.ref('users/' + uid).set({
