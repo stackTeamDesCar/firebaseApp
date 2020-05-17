@@ -1,34 +1,28 @@
 /**
  *
- * Profile
+ * ActivitiesPage
  *
  */
 
 import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
-import { FormattedMessage } from "react-intl";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
 
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
-import makeSelectProfile from "./selectors";
+import makeSelectActivitiesPage from "./selectors";
 import reducer from "./reducer";
 import saga from "./saga";
-import messages from "./messages";
 
-import Slide from '@material-ui/core/Slide';
 import Wrapper from 'components/Wrapper';
 
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
+import Slide from '@material-ui/core/Slide';
 
-export function Profile() {
-  useInjectReducer({ key: "profile", reducer });
-  // useInjectSaga({ key: "profile", saga });
+export function ActivitiesPage() {
 
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
@@ -36,28 +30,21 @@ export function Profile() {
           <Grid item xs={4} >
             <Wrapper flex direction="column">
 
-              <Typography variant="h1" gutterBottom >Hello!</Typography>
-              <Typography variant="h6" gutterBottom >Inserisci i tuoi dati personali e ciaone</Typography>
+              <Typography variant="h1" gutterBottom >Activities</Typography>
             </Wrapper>
           </Grid>
-          {/* <Grid item xs={4} >
-            <Wrapper flex direction="column">
-              <Typography variant="h1" gutterBottom >Hello!</Typography>
-              <Typography variant="h6" gutterBottom >Inserisci i tuoi dati personali e ciaone</Typography>
-            </Wrapper>
-          </Grid> */}
         </Grid>
-    </Slide>
+    </Slide> 
 
   );
 }
 
-Profile.propTypes = {
+ActivitiesPage.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  profile: makeSelectProfile()
+  activitiesPage: makeSelectActivitiesPage()
 });
 
 function mapDispatchToProps(dispatch) {
@@ -74,4 +61,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo
-)(Profile);
+)(ActivitiesPage);

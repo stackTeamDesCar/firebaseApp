@@ -32,23 +32,25 @@ import Text from 'components/Text';
 import LoadingIndicator from 'components/LoadingIndicator';
 const key = 'home';
 
-import tasks from '../../assets/svg/tasks.svg';
-import calendar from '../../assets/svg/calendar.svg';
-import chat from '../../assets/svg/chat.svg';
-
+// import tasks from '../../assets/svg/tasks.svg';
+// import calendar from '../../assets/svg/calendar.svg';
+// import chat from '../../assets/svg/chat.svg';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import EventIcon from '@material-ui/icons/Event';
+import ViewWeekIcon from '@material-ui/icons/ViewWeek';
 
 const sections = [
   {
     name: 'Chat',
-    icon: chat
+    icon: <ChatBubbleIcon color="primary" fontSize="large" />
   },
   {
     name: 'Calendario',
-    icon: calendar
+    icon: <EventIcon color="primary" fontSize="large" />
   },
   {
     name: 'Attività',
-    icon: tasks
+    icon: <ViewWeekIcon color="primary" fontSize="large" />
   },
 ];
 
@@ -65,6 +67,8 @@ export function HomePage({ username, onSubmitForm, getData, dispatch, loading, u
 
   return (
     <React.Fragment>
+
+
       {loading || !userData ? <LoadingIndicator /> :
         <HomeWrapper>
           {sections.map((el, index) => <Section
@@ -75,9 +79,8 @@ export function HomePage({ username, onSubmitForm, getData, dispatch, loading, u
             direction="column"
             width="33.33"
             height="100"
-            background="#bdc3c7"
             hover >
-            <Icon size="4" icon={el.icon} hover />
+            {el.icon}
             <Text size="1" letterSpacing >{el.name}</Text>
            
           </Section>)}

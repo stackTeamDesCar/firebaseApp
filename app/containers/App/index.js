@@ -19,6 +19,10 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import Profile from 'containers/Profile/Loadable';
 import AccessPage from 'containers/AccessPage/Loadable';
+import ChatPage from 'containers/ChatPage/Loadable';
+import CalendarPage from 'containers/CalendarPage/Loadable';
+import ActivitiesPage from 'containers/ActivitiesPage/Loadable';
+
 import Header from 'components/Header';
 
 import { makeSelectLocation } from './selectors';
@@ -39,6 +43,15 @@ export function App({ location }) {
       </Switch>
       <Switch>
         <Route exact path="/" component={AccessPage} />
+      </Switch>
+      <Switch>
+        <Route exact path="/chat" component={ChatPage} />
+      </Switch>
+      <Switch>
+        <Route exact path="/calendar" component={CalendarPage} />
+      </Switch>
+      <Switch>
+        <Route exact path="/activities" component={ActivitiesPage} />
       </Switch>
       <GlobalStyle />
     </AppWrapper>

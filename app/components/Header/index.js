@@ -13,15 +13,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ImageAvatar from 'components/Avatar';
 import { setLogout } from '../../containers/App/actions';
-import {Link } from "react-router-dom";
-
-import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import EventIcon from '@material-ui/icons/Event';
 import ViewWeekIcon from '@material-ui/icons/ViewWeek';
-
+import HomeIcon from '@material-ui/icons/Home';
+import Link from '@material-ui/core/Link';
+import { push } from 'connected-react-router'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,22 +42,21 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     height: '64px',
-    // color: theme.palette.primary.dark
   },
   tab: {
    minWidth: '80px',
    paddingTop: '1.3rem',
-   '&.MuiTab-textColorSecondary.Mui-selected': { 
-     color: theme.palette.primary.main
-   },
-   '&.MuiTabs-indicator':{
-    color: theme.palette.primary.main
-   }
+
+  '&.Mui-selected':{
+    color: `${theme.palette.primary.main} !important`
+  },
+  '&.MuiTab-textColorPrimary':{
+    color: theme.palette.secondary.main
+  }
   },
   indicator: {
-    width: '40px !important',
-  }
-  
+    width: '20px !important',
+  },
 }));
 
 
@@ -69,41 +67,33 @@ function Header({dispatch,logged,userData,theme}) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    dispatch(push(newValue));
+
   };
 
   const onLogout = () => {
     dispatch(setLogout())
   }
   return (
-    // <div>
-      /* {logged && 
-      <NavBar>
-        <ImageAvatar src={userData.photo}/>
-        <div>
-          <HeaderLink to="/profile">
-            <FormattedMessage {...messages.profile} />
-          </HeaderLink>
-          <HeaderLink onClick={onLogout}>
-            <FormattedMessage {...messages.logout} />
-          </HeaderLink>
-        </div>
-      </NavBar>}
-     
-    </div> */
      <AppBar position="static" className={classes.appbar}>
      <Toolbar className={classes.toolbar}>
           <Tabs
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
-            textColor="secondary"
+            textColor="primary"
             aria-label="icon tabs example"
             className={classes.tabs}
             classes={{indicator: classes.indicator}}
           >
-            <Tab icon={<ChatBubbleIcon />} aria-label="chat" className={classes.tab}/>
-            <Tab icon={<EventIcon />} aria-label="calendar" className={classes.tab}/>
-            <Tab icon={<ViewWeekIcon />} aria-label="event" className={classes.tab} />
+            <Tab icon={<HomeIcon />} aria-label="home" className={classes.tab} value="/homepage"/>
+
+            <Tab icon={<ChatBubbleIcon />} aria-label="chat" className={classes.tab} value="/chat"/>
+            <Tab icon={<EventIcon />} aria-label="calendar" className={classes.tab} value="/calendar" />
+            <Tab icon={<ViewWeekIcon />} aria-label="event" className={classes.tab} value="/activities" />
+
+
+
           </Tabs>
          <div>
            <IconButton

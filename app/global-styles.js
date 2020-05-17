@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
   }
 
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
@@ -27,6 +31,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
+
+  a {
+    color: inherit;
+  }
+
+
 `;
 
 export default GlobalStyle;
