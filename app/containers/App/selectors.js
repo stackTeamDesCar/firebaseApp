@@ -38,6 +38,11 @@ const makeSelectCredentials = () =>
     selectGlobal,
     globalState => globalState.userData.email
   );
+  const makeSelectUserData = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.userData
+  );
 
 
 
@@ -58,4 +63,5 @@ export {
   makeSelectRepos,
   makeSelectLocation,
   makeSelectCredentials,
+  makeSelectUserData
 };

@@ -30,7 +30,7 @@ const AppWrapper = styled.div``;
 export function App({ location }) {
   return (
     <AppWrapper>
-      {location.pathname !== '/' && <Header />}
+      {location.pathname !== '/' && <Header/>}
       <Switch>
         <Route exact path="/homepage" component={HomePage} />
       </Switch>

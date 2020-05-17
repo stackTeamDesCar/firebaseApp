@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import { createStructuredSelector } from "reselect";
 
-import {makeSelectCredentials} from '../../containers/App/selectors';
+import {makeSelectCredentials,makeSelectUserData} from '../../containers/App/selectors';
 
 import Avatar from 'components/Avatar';
 
@@ -15,16 +15,15 @@ import messages from './messages';
 
 import { setLogout } from '../../containers/App/actions';
 
-function Header({dispatch,logged}) {
+function Header({dispatch,logged,userData}) {
 
   const onLogout = () => {
     dispatch(setLogout())
   }
-
   return (
     <div>
       {logged && <NavBar>
-        <Avatar size={50} borderColor="#eee" borderSize={2} />
+        <Avatar url={userData.photo} size={50} borderColor="#eee" borderSize={2} />
         <div>
            <HeaderLink to="/profile">
           <FormattedMessage {...messages.profile} />
@@ -45,6 +44,7 @@ Header.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   logged: makeSelectCredentials(),
+  userData: makeSelectUserData(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -11,8 +11,6 @@ import firebase from 'firebase';
 import { SIGNIN, LOGIN, } from './constants';
 import { push, replace } from 'connected-react-router';
 
-// const db =  firebase.database();
-
 function* login({ user }) {
   const db = yield firebase.database();
   try {
@@ -40,23 +38,25 @@ function* signIn({ userData }) {
   const db = yield firebase.database();
   try {
     const data = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
-    if (data) {//se la registrazione va bene, salvo i dati dell'utente in /users, con id come identificativo
+    if (data) {
       yield put(setLoading(true));
       yield put(setError(false));
 
-      ///qui devo recuperare foto e salvarla sullo storage di fb..poi una volta salvata recupero url e lo salvo in users/uid con gli altri dati
-
       const uid = data.user.uid;
-      db.ref('users/' + uid).set({
+      yield db.app.storage().ref('avatar/' + uid).put(userData.photo);
+      const url = yield db.app.storage().ref('avatar/' + uid).getDownloadURL();
+
+      yield db.ref('users/' + uid).set({
         email: userData.email,
         password: userData.password,
         id: uid,
         city: userData.city,
-        username: userData.username
+        username: userData.username,
+        photo: url
       });
       yield db.app.auth().signOut();
       yield put(setAccessMode('login'));
-    } 
+    }
   }
   catch (error) {
     console.log(error)
