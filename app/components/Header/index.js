@@ -11,16 +11,16 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ImageAvatar from 'components/Avatar';
-import { setLogout } from '../../containers/App/actions';
-import {Link } from "react-router-dom";
-
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import EventIcon from '@material-ui/icons/Event';
 import ViewWeekIcon from '@material-ui/icons/ViewWeek';
+import ImageAvatar from 'components/Avatar';
+import { setLogout } from '../../containers/App/actions';
+import {Link } from "react-router-dom";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,10 +43,14 @@ const useStyles = makeStyles((theme) => ({
   },
   tabs: {
     height: '64px',
+    width: '40%',
+    display: 'flex',
+    justifyContent: 'space-around'
     // color: theme.palette.primary.dark
   },
   tab: {
    minWidth: '80px',
+   width: '33.3%',
    paddingTop: '1.3rem',
    '&.MuiTab-textColorSecondary.Mui-selected': { 
      color: theme.palette.primary.main
@@ -96,7 +100,7 @@ function Header({dispatch,logged,userData,theme}) {
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
-            textColor="secondary"
+            textColor="primary"
             aria-label="icon tabs example"
             className={classes.tabs}
             classes={{indicator: classes.indicator}}
