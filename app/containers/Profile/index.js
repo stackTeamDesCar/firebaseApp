@@ -26,7 +26,6 @@ import messages from "./messages";
 import Slide from '@material-ui/core/Slide';
 import { omit } from 'lodash';
 
-import FadeIn from 'components/FadeIn';
 import Wrapper from 'components/Wrapper';
 import ImageAvatar from 'components/Avatar';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -87,9 +86,9 @@ export function Profile({ userData, loading, dispatch }) {
 
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
-      {loading || !userData ?
+      {/* {loading || !userData ?
         <LoadingIndicator />
-        :
+        : */}
         <Grid container justify="center" alignItems="center" style={{ height: '90vh' }}>
           <Grid item xs={4} >
             <Wrapper flex direction="column">
@@ -115,7 +114,7 @@ export function Profile({ userData, loading, dispatch }) {
             </Wrapper>
           </Grid>
         </Grid>
-      }
+      {/* } */}
     </Slide>
   );
 }

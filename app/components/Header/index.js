@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import ImageAvatar from 'components/Avatar';
 import { setLogout } from '../../containers/App/actions';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -22,7 +21,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import {Link} from 'react-router-dom';
 import { push } from 'connected-react-router'
 import ImageAvatar from 'components/Avatar';
-import { setLogout } from '../../containers/App/actions';
 
 
 
@@ -49,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
    minWidth: '80px',
-   width: '33.3%',
    paddingTop: '1.3rem',
 
   '&.Mui-selected':{
