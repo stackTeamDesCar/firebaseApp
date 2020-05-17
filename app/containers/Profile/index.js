@@ -16,7 +16,8 @@ import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
 import makeSelectProfile from "./selectors";
 import { editPhoto } from "./actions";
-import { makeSelectUserData } from 'containers/App/selectors';
+import { setLoading } from "containers/App/actions";
+import { makeSelectUserData,makeSelectLoading } from 'containers/App/selectors';
 
 import reducer from "./reducer";
 import saga from "./saga";
@@ -27,6 +28,7 @@ import { omit } from 'lodash';
 import FadeIn from 'components/FadeIn';
 import Wrapper from 'components/Wrapper';
 import ImageAvatar from 'components/Avatar';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -71,7 +73,7 @@ const useStyles = makeStyles({
     color: 'rgba(0,0,0,.5)'
   }
 });
-export function Profile({ userData, dispatch }) {
+export function Profile({ userData, loading, dispatch }) {
   useInjectReducer({ key: "profile", reducer });
 
 
@@ -80,36 +82,40 @@ export function Profile({ userData, dispatch }) {
 
   const data = Object.entries(_.omit(userData, 'photo'));
 
-  const setPhoto = (e) => dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] }));
+  const setPhoto = (e) => { dispatch(setLoading(true)); dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] })); }
 
   return (
     <FadeIn>
-      <Grid container justify="center" alignItems="center" style={{ height: '90vh' }}>
-        <Grid item xs={4} >
-          <Wrapper flex direction="column">
-            <ImageAvatar src={photo} size={400} />
-            <div className={classes.fileUpload}>
-              <label className={classes.inputLabel}>Edit</label>
-              <input className={classes.upload} label="Photo" type="file" variant="outlined" id="photo" fullWidth onChange={setPhoto} />
-            </div>
-          </Wrapper>
-        </Grid>
-        <Grid item xs={4} >
-          <Wrapper flex direction="column">
-            <Card className={classes.root}>
-              <CardContent>
-                {data.map((el) => <Typography variant="body2" component="p">
-                  {el[0]} : {el[1]}
-                </Typography>)}
-              </CardContent>
-              <CardActions>
-                <Button size="small">Modifica</Button>
-              </CardActions>
-            </Card>
-          </Wrapper>
-        </Grid>
+      {loading || !userData ?
+        <LoadingIndicator />
+        :
+        <Grid container justify="center" alignItems="center" style={{ height: '90vh' }}>
+          <Grid item xs={4} >
+            <Wrapper flex direction="column">
+              <ImageAvatar src={photo} size={400} />
+              <div className={classes.fileUpload}>
+                <label className={classes.inputLabel}>Edit</label>
+                <input className={classes.upload} label="Photo" type="file" variant="outlined" id="photo" fullWidth onChange={setPhoto} />
+              </div>
+            </Wrapper>
+          </Grid>
+          <Grid item xs={4} >
+            <Wrapper flex direction="column">
+              <Card className={classes.root}>
+                <CardContent>
+                  {data.map((el) => <Typography variant="body2" component="p">
+                    {el[0]} : {el[1]}
+                  </Typography>)}
+                </CardContent>
+                <CardActions>
+                  <Button size="small">Modifica</Button>
+                </CardActions>
+              </Card>
+            </Wrapper>
+          </Grid>
 
-      </Grid>
+        </Grid>
+      }
     </FadeIn>
 
   );
@@ -122,6 +128,7 @@ Profile.propTypes = {
 const mapStateToProps = createStructuredSelector({
   profile: makeSelectProfile(),
   userData: makeSelectUserData(),
+  loading: makeSelectLoading(),
 });
 
 
