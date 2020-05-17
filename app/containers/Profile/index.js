@@ -15,6 +15,7 @@ import { compose } from "redux";
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
 import makeSelectProfile from "./selectors";
+import { editPhoto } from "./actions";
 import { makeSelectUserData } from 'containers/App/selectors';
 
 import reducer from "./reducer";
@@ -50,16 +51,36 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  fileUpload: {
+    position: 'relative',
+    overflow: 'hidden',
+    margin: '1em 0 3em',
+  },
+  upload: {
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    margin: '0',
+    padding: '0',
+    fontSize: '20px',
+    cursor: 'pointer',
+    opacity: '0',
+    filter: 'alpha(opacity=0)'
+  },
+  inputLabel: {
+    color: 'rgba(0,0,0,.5)'
+  }
 });
-export function Profile({ userData }) {
+export function Profile({ userData, dispatch }) {
   useInjectReducer({ key: "profile", reducer });
+
 
   const classes = useStyles();
   const { photo } = userData;
 
   const data = Object.entries(_.omit(userData, 'photo'));
-  console.log(data)
 
+  const setPhoto = (e) => dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] }));
 
   return (
     <FadeIn>
@@ -67,7 +88,10 @@ export function Profile({ userData }) {
         <Grid item xs={4} >
           <Wrapper flex direction="column">
             <ImageAvatar src={photo} size={400} />
-            <Button color="primary">Edit</Button>
+            <div className={classes.fileUpload}>
+              <label className={classes.inputLabel}>Edit</label>
+              <input className={classes.upload} label="Photo" type="file" variant="outlined" id="photo" fullWidth onChange={setPhoto} />
+            </div>
           </Wrapper>
         </Grid>
         <Grid item xs={4} >
@@ -79,7 +103,7 @@ export function Profile({ userData }) {
                 </Typography>)}
               </CardContent>
               <CardActions>
-                <Button size="small">Edit</Button>
+                <Button size="small">Modifica</Button>
               </CardActions>
             </Card>
           </Wrapper>
