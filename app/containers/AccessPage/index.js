@@ -95,9 +95,9 @@ export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
           <Hidden smDown>
             <Grid item xs={4} style={{ height: "100%" }}>
               <Wrapper flex direction="column" bg>
-                <Typography variant="h1" gutterBottom >Hello!</Typography>
-                <Typography variant="h6" gutterBottom >Inserisci i tuoi dati personali e ciaone</Typography>
-                <Btn text={accessMode === 'signin' ? "Login" : "Sign in"} variant="outlined" border="white" onClick={() => accessMode === 'login' ? switchMode('signin') : switchMode('login')} />
+                <Typography variant="h1" gutterBottom color="secondary" >Hello!</Typography>
+                <Typography variant="h6" gutterBottom color="secondary" >Inserisci i tuoi dati personali e ciaone</Typography>
+                <Btn text={accessMode === 'signin' ? "Login" : "Sign in"} color="secondary" variant="outlined" border="white" onClick={() => accessMode === 'login' ? switchMode('signin') : switchMode('login')} />
               </Wrapper>
             </Grid>
           </Hidden>
