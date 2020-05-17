@@ -37,15 +37,20 @@ function* signIn({ userData }) {
 
   const db = yield firebase.database();
   try {
+    const defaultPhoto = "https://www.securities-services.societegenerale.com/uploads/tx_bisgbio/default-profile.png";
+    
     const data = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
     if (data) {
       yield put(setLoading(true));
       yield put(setError(false));
 
       const uid = data.user.uid;
-      yield db.app.storage().ref('avatar/' + uid).put(userData.photo);
-      const url = yield db.app.storage().ref('avatar/' + uid).getDownloadURL();
+      if (userData.photo) {
+        yield db.app.storage().ref('avatar/' + uid).put(userData.photo);
 
+      }
+
+      const url = userData.photo ? yield db.app.storage().ref('avatar/' + uid).getDownloadURL() : defaultPhoto;
       yield db.ref('users/' + uid).set({
         email: userData.email,
         password: userData.password,

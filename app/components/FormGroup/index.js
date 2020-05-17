@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     opacity: '0',
     filter: 'alpha(opacity=0)'
   },
-  inputSpan: {
+  inputLabel: {
     color: 'rgba(0,0,0,.5)'
   }
 }));
@@ -49,7 +49,7 @@ function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUse
       {accessMode && <Input label="Username" type="text" variant="outlined" id="username" fullWidth onChange={setUsername}></Input>}
       {accessMode &&
         <div className={classes.fileUpload}>
-          <span className={classes.inputSpan}>Foto profilo +</span>
+          <label className={classes.inputLabel}>Foto profilo +</label>
           <input className={classes.upload} label="Photo" type="file" variant="outlined" id="photo" fullWidth onChange={setPhoto} />
         </div>
       }
@@ -60,7 +60,6 @@ function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUse
 }
 
 FormGroup.propTypes = {
-
 };
 
 export default FormGroup;
