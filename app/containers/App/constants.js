@@ -16,3 +16,4 @@ export const AUTO_LOGIN = 'App/AUTO_LOGIN';
 export const SET_LOGIN = 'App/SET_LOGIN';
 export const SET_LOGOUT = 'App/SET_LOGOUT';
 export const SET_LOADING = 'App/SET_LOADING';
+export const EDIT_PHOTO_URL = 'App/EDIT_PHOTO_URL';

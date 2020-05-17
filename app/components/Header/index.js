@@ -21,6 +21,10 @@ import ViewWeekIcon from '@material-ui/icons/ViewWeek';
 import HomeIcon from '@material-ui/icons/Home';
 import {Link} from 'react-router-dom';
 import { push } from 'connected-react-router'
+import ImageAvatar from 'components/Avatar';
+import { setLogout } from '../../containers/App/actions';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
    minWidth: '80px',
+   width: '33.3%',
    paddingTop: '1.3rem',
 
   '&.Mui-selected':{
