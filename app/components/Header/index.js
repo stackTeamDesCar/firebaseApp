@@ -19,7 +19,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import EventIcon from '@material-ui/icons/Event';
 import ViewWeekIcon from '@material-ui/icons/ViewWeek';
 import HomeIcon from '@material-ui/icons/Home';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import { push } from 'connected-react-router'
 
 const useStyles = makeStyles((theme) => ({
@@ -87,7 +87,6 @@ function Header({dispatch,logged,userData,theme}) {
             classes={{indicator: classes.indicator}}
           >
             <Tab icon={<HomeIcon />} aria-label="home" className={classes.tab} value="/homepage"/>
-
             <Tab icon={<ChatBubbleIcon />} aria-label="chat" className={classes.tab} value="/chat"/>
             <Tab icon={<EventIcon />} aria-label="calendar" className={classes.tab} value="/calendar" />
             <Tab icon={<ViewWeekIcon />} aria-label="event" className={classes.tab} value="/activities" />
