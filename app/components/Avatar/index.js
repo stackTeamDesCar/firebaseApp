@@ -10,9 +10,7 @@ const useStyles = makeStyles((theme) => ({
 const ImageAvatar = (props) => {
     const classes = useStyles();
     return (
-      <div className={classes.root}>
         <Avatar src={props.src} />
-      </div>
     );
 }
 
