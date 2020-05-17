@@ -8,7 +8,7 @@ import { createStructuredSelector } from "reselect";
 
 import {makeSelectCredentials,makeSelectUserData} from '../../containers/App/selectors';
 
-import Avatar from 'components/Avatar';
+import ImageAvatar from 'components/Avatar';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -23,7 +23,7 @@ function Header({dispatch,logged,userData}) {
   return (
     <div>
       {logged && <NavBar>
-        <Avatar url={userData.photo} size={50} borderColor="#eee" borderSize={2} />
+        <ImageAvatar src={userData.photo}/>
         <div>
            <HeaderLink to="/profile">
           <FormattedMessage {...messages.profile} />
@@ -32,7 +32,6 @@ function Header({dispatch,logged,userData}) {
           <FormattedMessage {...messages.logout} />
         </HeaderLink>
         </div>
-       
       </NavBar>}
     </div>
   );

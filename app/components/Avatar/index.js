@@ -1,24 +1,19 @@
 import React from 'react';
-import { Wrapper } from './styled';
+import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 
-const Avatar = (props) => {
+const useStyles = makeStyles((theme) => ({
+    root: {
+    },
+  }));
 
-    const {
-        size,
-        borderSize,
-        borderColor,
-        url
-    } = props;
-
+const ImageAvatar = (props) => {
+    const classes = useStyles();
     return (
-        <Wrapper
-            size={size}
-            borderSize={borderSize}
-            borderColor={borderColor}
-            url={url}
-        >
-        </Wrapper>
+      <div className={classes.root}>
+        <Avatar src={props.src} />
+      </div>
     );
 }
 
-export default Avatar;
+export default ImageAvatar;
