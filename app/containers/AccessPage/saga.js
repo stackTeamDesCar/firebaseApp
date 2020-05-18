@@ -2,14 +2,16 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, put, take, select, takeLatest } from 'redux-saga/effects';
 import { makeSelectCredentials } from './selectors';
 import { setLogout, setError } from './actions';
-import { setLogin, setLoading } from 'containers/App/actions';
+import { setLogin, setLoading, autoLogin } from 'containers/App/actions';
 import { setAccessMode } from 'containers/AccessPage/actions';
 import firebase from 'firebase';
 import { SIGNIN, LOGIN, } from './constants';
 import { push, replace } from 'connected-react-router';
+import { eventChannel } from 'redux-saga'
+import { omit } from 'lodash';
 
 function* login({ user }) {
   const db = yield firebase.database();
@@ -20,16 +22,17 @@ function* login({ user }) {
       yield put(setError(false));
 
       const uid = yield db.app.auth().currentUser.uid;
+      yield put(autoLogin())
 
-      yield put(setLogin({ email: user.email, id: uid }))
-      yield put(replace('/homepage'));
-      yield put(setLoading(false));
+      // yield put(setLogin({ email: user.email, id: uid }))
+      // yield put(replace('/homepage'));
 
     }
   } catch (error) {
     yield put(setError(true));
-    yield put(setLoading(false));
     console.log(error)
+  } finally {
+    yield put(setLoading(false));
   }
 }
 
