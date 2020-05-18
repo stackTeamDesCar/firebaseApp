@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 import AppBar from '@material-ui/core/AppBar';
-import {makeSelectCredentials,makeSelectUserData} from '../../containers/App/selectors';
+import {makeSelectCredentials, makeSelectUserData, makeSelectLocation} from '../../containers/App/selectors';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function Header({dispatch,logged,userData,theme}) {
+function Header({dispatch,logged,userData, location}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -76,11 +76,12 @@ function Header({dispatch,logged,userData,theme}) {
   const onLogout = () => {
     dispatch(setLogout())
   }
+  
   return (
      <AppBar position="static" className={classes.appbar}>
      <Toolbar className={classes.toolbar}>
           <Tabs
-            value={value}
+            value={location.pathname}
             onChange={handleChange}
             indicatorColor="primary"
             textColor="primary"
@@ -92,9 +93,6 @@ function Header({dispatch,logged,userData,theme}) {
             <Tab icon={<ChatBubbleIcon />} aria-label="chat" className={classes.tab} value="/chat"/>
             <Tab icon={<EventIcon />} aria-label="calendar" className={classes.tab} value="/calendar" />
             <Tab icon={<ViewWeekIcon />} aria-label="event" className={classes.tab} value="/activities" />
-
-
-
           </Tabs>
          <div>
            <IconButton
@@ -117,7 +115,6 @@ function Header({dispatch,logged,userData,theme}) {
                 <ImageAvatar src={userData.photo}/>
             </IconButton>
            </Link>
-
          </div>
      </Toolbar>
    </AppBar>
@@ -131,6 +128,9 @@ Header.propTypes = {
 const mapStateToProps = createStructuredSelector({
   logged: makeSelectCredentials(),
   userData: makeSelectUserData(),
+  location: makeSelectLocation(),
+
+
 });
 
 function mapDispatchToProps(dispatch) {
