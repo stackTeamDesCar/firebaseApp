@@ -8,7 +8,7 @@
 
 
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -26,15 +26,19 @@ import ActivitiesPage from 'containers/ActivitiesPage/Loadable';
 import Header from 'components/Header';
 
 import { makeSelectLocation } from './selectors';
+import { autoLogin } from './actions';
 
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div``;
 
-export function App({ location }) {
+export function App({ location, dispatch }) {
+  useEffect(() => {
+   dispatch(autoLogin());
+  }, [])
   return (
     <AppWrapper>
-      {location.pathname !== '/' && <Header/>}
+      {location.pathname !== '/' && <Header />}
       <Switch>
         <Route exact path="/homepage" component={HomePage} />
       </Switch>
