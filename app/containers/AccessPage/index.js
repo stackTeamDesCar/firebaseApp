@@ -44,6 +44,8 @@ export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
   const [city, setCity] = useState('');
   const [username, setUsername] = useState('');
   const [photo, setPhoto] = useState(null);
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
 
   useEffect(() => {
     dispatch(autoLogin());
@@ -60,7 +62,15 @@ export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
 
   const handleRegister = (evt) => {
     evt.preventDefault();
-    dispatch(signIn({ email: email, password: password, city: city, username: username, photo: photo }));
+    dispatch(signIn({
+      name: name,
+      surname: surname,
+      email: email,
+      password: password,
+      city: city,
+      username: username,
+      photo: photo
+    }));
   }
 
   const switchMode = (mode) => {
@@ -83,6 +93,8 @@ export function AccessPage({ dispatch, getData, loading, error, accessMode }) {
                 setCity={e => setCity(e.target.value)}
                 setPhoto={e => setPhoto(e.target.files[0])}
                 setUsername={e => setUsername(e.target.value)}
+                setName={e => setName(e.target.value)}
+                setSurname={e => setSurname(e.target.value)}
                 title={accessMode === 'signin' ? "Sign in" : "Login"}
                 cta={accessMode === 'signin' ? "Sign in" : "Login"}
                 accessMode={accessMode === 'signin'}

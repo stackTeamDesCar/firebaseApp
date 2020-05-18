@@ -38,7 +38,7 @@ function* signIn({ userData }) {
   const db = yield firebase.database();
   try {
     const defaultPhoto = "https://www.securities-services.societegenerale.com/uploads/tx_bisgbio/default-profile.png";
-    
+
     const data = yield db.app.auth().createUserWithEmailAndPassword(userData.email, userData.password);
     if (data) {
       yield put(setLoading(true));
@@ -52,6 +52,8 @@ function* signIn({ userData }) {
 
       const url = userData.photo ? yield db.app.storage().ref('avatar/' + uid).getDownloadURL() : defaultPhoto;
       yield db.ref('users/' + uid).set({
+        name: userData.name,
+        surname: userData.surname,
         email: userData.email,
         password: userData.password,
         id: uid,

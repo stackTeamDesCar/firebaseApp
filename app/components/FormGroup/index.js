@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, setPhoto, message, accessMode, error }) {
+function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername,setName,setSurname, setPhoto, message, accessMode, error }) {
   const classes = useStyles();
 
   return (
@@ -45,6 +45,8 @@ function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUse
       {error && <h6>Ci sono stati errori,riprova!</h6>}
       <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>
       <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>
+      {accessMode && <Input label="Name" type="text" variant="outlined" id="name" fullWidth onChange={setName}></Input>}
+      {accessMode && <Input label="Surname" type="text" variant="outlined" id="surname" fullWidth onChange={setSurname}></Input>}
       {accessMode && <Input label="City" type="text" variant="outlined" id="city" fullWidth onChange={setCity}></Input>}
       {accessMode && <Input label="Username" type="text" variant="outlined" id="username" fullWidth onChange={setUsername}></Input>}
       {accessMode &&
