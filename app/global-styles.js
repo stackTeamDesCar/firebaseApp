@@ -36,6 +36,9 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  button {
+    box-shadow: none;
+  }
 
 `;
 

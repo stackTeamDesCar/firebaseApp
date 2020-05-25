@@ -89,11 +89,12 @@ function Header({dispatch,logged,userData, location}) {
             aria-label="icon tabs example"
             className={classes.tabs}
             classes={{indicator: classes.indicator}}
+            disableRipple
           >
-            <Tab icon={<HomeIcon />} aria-label="home" className={classes.tab} value="/homepage"/>
-            <Tab icon={<ChatBubbleIcon />} aria-label="chat" className={classes.tab} value="/chat"/>
-            <Tab icon={<EventIcon />} aria-label="calendar" className={classes.tab} value="/calendar" />
-            <Tab icon={<ViewWeekIcon />} aria-label="event" className={classes.tab} value="/activities" />
+            <Tab icon={<HomeIcon />}  aria-label="home" className={classes.tab} value="/homepage"/>
+            <Tab icon={<ChatBubbleIcon />}  aria-label="chat" className={classes.tab} value="/chat"/>
+            <Tab icon={<EventIcon />}  aria-label="calendar" className={classes.tab} value="/calendar" />
+            <Tab icon={<ViewWeekIcon />}  aria-label="event" className={classes.tab} value="/activities" />
           </Tabs>
          <div>
            <IconButton

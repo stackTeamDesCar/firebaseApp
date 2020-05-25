@@ -3,7 +3,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const primary = '#112432';
 const secondary = "#d0d1d3";
 
-
 const theme = createMuiTheme({
     palette: {
         primary: {
@@ -43,7 +42,13 @@ const theme = createMuiTheme({
             lineHeight: '52px',
           },
         },
-}
+},
+      props: {
+        MuiButtonBase: {
+          disableRipple: true,
+        },
+      },
+
 });
 
 export default theme;
