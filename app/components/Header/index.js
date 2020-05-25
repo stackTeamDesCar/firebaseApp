@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -69,6 +69,7 @@ function Header({dispatch,logged,userData, location}) {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log('nnn',newValue)
     dispatch(push(newValue));
 
   };

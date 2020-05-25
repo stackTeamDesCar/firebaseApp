@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SectionWrapper } from './styled';
+import { SectionWrapper, BoxWrapper } from './styled';
 
 
-function Section({ display, direction, align, justify, width, height, background,hover, children }) {
+function Section({ display, direction, align, justify, width, height, background, hover, children, onClick }) {
 
     return <SectionWrapper
         display={display}
@@ -14,7 +14,7 @@ function Section({ display, direction, align, justify, width, height, background
         height={height}
         background={background}
         hover={hover}
-    >{children}</SectionWrapper>;
+    ><BoxWrapper onClick={onClick}>{children}</BoxWrapper></SectionWrapper>;
 }
 
 Section.propTypes = {

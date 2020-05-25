@@ -14,3 +14,11 @@ export const SectionWrapper = styled.div`
     }
     
 `;
+
+export const BoxWrapper = styled.div`
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+`;

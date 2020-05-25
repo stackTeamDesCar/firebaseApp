@@ -30,6 +30,9 @@ import Section from 'components/Section';
 import Icon from 'components/Icon';
 import Text from 'components/Text';
 import LoadingIndicator from 'components/LoadingIndicator';
+
+import { push } from 'connected-react-router'
+
 const key = 'home';
 
 // import tasks from '../../assets/svg/tasks.svg';
@@ -42,15 +45,18 @@ import ViewWeekIcon from '@material-ui/icons/ViewWeek';
 const sections = [
   {
     name: 'Chat',
-    icon: <ChatBubbleIcon color="primary" fontSize="large" />
+    icon: <ChatBubbleIcon color="primary" fontSize="large" />,
+    location: 'chat'
   },
   {
     name: 'Calendario',
-    icon: <EventIcon color="primary" fontSize="large" />
+    icon: <EventIcon color="primary" fontSize="large" />,
+    location: 'calendar'
   },
   {
     name: 'Attività',
-    icon: <ViewWeekIcon color="primary" fontSize="large" />
+    icon: <ViewWeekIcon color="primary" fontSize="large" />,
+    location: 'activities'
   },
 ];
 
@@ -64,11 +70,14 @@ export function HomePage({ username, onSubmitForm, getData, dispatch, loading, u
     dispatch(autoLogin());
   }, []);
 
+  const handleSelectTab = (path) => {
+    console.log('pp',path)
+    dispatch(push(path))
+  }
+
 
   return (
     <React.Fragment>
-
-
       {loading || !userData ? <LoadingIndicator /> :
         <HomeWrapper>
           {sections.map((el, index) => <Section
@@ -79,10 +88,11 @@ export function HomePage({ username, onSubmitForm, getData, dispatch, loading, u
             direction="column"
             width="33.33"
             height="100"
-            hover >
+            hover
+            onClick={() => handleSelectTab(el.location)}>
             {el.icon}
             <Text size="1" letterSpacing >{el.name}</Text>
-           
+
           </Section>)}
         </HomeWrapper>
       }
@@ -97,6 +107,7 @@ HomePage.propTypes = {
   onSubmitForm: PropTypes.func,
   username: PropTypes.string,
   onChangeUsername: PropTypes.func,
+  handleSelectTab: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
