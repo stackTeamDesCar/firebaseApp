@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   upload: {
     position: 'absolute',
     top: '0',
-    right:'0',
+    right: '0',
     margin: '0',
     padding: '0',
     fontSize: '20px',
@@ -36,20 +36,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername,setName,setSurname, setPhoto, message, accessMode, error }) {
+function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, setName, setSurname, setPhoto, message, accessMode, error, modifyModal }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Typography variant="h1" align="center" color="primary">{title}</Typography>
       {error && <h6>Ci sono stati errori,riprova!</h6>}
-      <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>
-      <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>
+      {!modifyModal && <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>}
+      {!modifyModal && <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>}
       {accessMode && <Input label="Name" type="text" variant="outlined" id="name" fullWidth onChange={setName}></Input>}
       {accessMode && <Input label="Surname" type="text" variant="outlined" id="surname" fullWidth onChange={setSurname}></Input>}
       {accessMode && <Input label="City" type="text" variant="outlined" id="city" fullWidth onChange={setCity}></Input>}
       {accessMode && <Input label="Username" type="text" variant="outlined" id="username" fullWidth onChange={setUsername}></Input>}
-      {accessMode &&
+      {accessMode && !modifyModal &&
         <div className={classes.fileUpload}>
           <label className={classes.inputLabel}>Foto profilo +</label>
           <input className={classes.upload} label="Photo" type="file" variant="outlined" id="photo" fullWidth onChange={setPhoto} />

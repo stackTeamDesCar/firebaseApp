@@ -125,23 +125,23 @@ export function Profile({ userData, loading, dispatch }) {
           </Grid>
         </Grid>
         <CustomModal open={openModal} handleClose={() => onOpenModal(false)}>
-        
-        <FormGroup
-                // setPassword={e => console.log(e)}
-                // setEmail={e => console.log(e)}
-                // setCity={e => console.log(e)}
-                // setPhoto={e => console.log(e)}
-                // setUsername={e => console.log(e)}
-                // setName={e =>console.log(e)}
-                // setSurname={e => console.log(e)}
-                title=""
-                cta="Modifica"
-                accessMode
-                // getData={getData}
-                // onClick={console.log('click')}
-                // error={error}
-              />
-      </CustomModal>
+
+          <FormGroup
+            // setPassword={e => console.log(e)}
+            // setEmail={e => console.log(e)}
+            // setCity={e => console.log(e)}
+            // setPhoto={e => console.log(e)}
+            // setUsername={e => console.log(e)}
+            // setName={e =>console.log(e)}
+            // setSurname={e => console.log(e)}
+            title=""
+            cta="Modifica"
+            accessMode
+            modifyModal
+          // onClick={console.log('click')}
+          // error={error}
+          />
+        </CustomModal>
       </div>
 
       {/* } */}
