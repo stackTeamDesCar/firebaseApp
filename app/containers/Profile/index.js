@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -17,7 +17,7 @@ import { useInjectReducer } from "utils/injectReducer";
 import makeSelectProfile from "./selectors";
 import { editPhoto } from "./actions";
 import { setLoading } from "containers/App/actions";
-import { makeSelectUserData,makeSelectLoading } from 'containers/App/selectors';
+import { makeSelectUserData, makeSelectLoading } from 'containers/App/selectors';
 
 import reducer from "./reducer";
 import saga from "./saga";
@@ -28,7 +28,10 @@ import { omit } from 'lodash';
 
 import Wrapper from 'components/Wrapper';
 import ImageAvatar from 'components/Avatar';
+import CustomModal from 'components/CustomModal';
 import LoadingIndicator from 'components/LoadingIndicator';
+import FormGroup from 'components/FormGroup';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -76,19 +79,26 @@ const useStyles = makeStyles({
 export function Profile({ userData, loading, dispatch }) {
   useInjectReducer({ key: "profile", reducer });
 
+  const [openModal, onOpenModal] = useState(false);
+  // const [openModal, handleCloseModal] = useState(true);
+
 
   const classes = useStyles();
   const { photo } = userData;
 
   const data = Object.entries(_.omit(userData, 'photo'));
 
-  const setPhoto = (e) => { dispatch(setLoading(true)); dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] })); }
+  const setPhoto = (e) => {
+    dispatch(setLoading(true));
+    dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] }));
+  }
 
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
       {/* {loading || !userData ?
         <LoadingIndicator />
         : */}
+      <div>
         <Grid container justify="center" alignItems="center" style={{ height: '90vh' }}>
           <Grid item xs={4} >
             <Wrapper flex direction="column">
@@ -108,12 +118,32 @@ export function Profile({ userData, loading, dispatch }) {
                   </Typography>)}
                 </CardContent>
                 <CardActions>
-                  <Button size="small">Modifica</Button>
+                  <Button size="small" onClick={() => onOpenModal(true)}>Modifica</Button>
                 </CardActions>
               </Card>
             </Wrapper>
           </Grid>
         </Grid>
+        <CustomModal open={openModal} handleClose={() => onOpenModal(false)}>
+        
+        <FormGroup
+                // setPassword={e => console.log(e)}
+                // setEmail={e => console.log(e)}
+                // setCity={e => console.log(e)}
+                // setPhoto={e => console.log(e)}
+                // setUsername={e => console.log(e)}
+                // setName={e =>console.log(e)}
+                // setSurname={e => console.log(e)}
+                title=""
+                cta="Modifica"
+                accessMode
+                // getData={getData}
+                // onClick={console.log('click')}
+                // error={error}
+              />
+      </CustomModal>
+      </div>
+
       {/* } */}
     </Slide>
   );
