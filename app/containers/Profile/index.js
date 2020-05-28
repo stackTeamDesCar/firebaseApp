@@ -93,6 +93,11 @@ export function Profile({ userData, loading, dispatch }) {
     dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] }));
   }
 
+  const handleModifyData = () => {
+    console.log('modifica')
+    //da settare valori nuovi su fb
+  }
+
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
       {/* {loading || !userData ?
@@ -127,19 +132,17 @@ export function Profile({ userData, loading, dispatch }) {
         <CustomModal open={openModal} handleClose={() => onOpenModal(false)}>
 
           <FormGroup
-            // setPassword={e => console.log(e)}
-            // setEmail={e => console.log(e)}
-            // setCity={e => console.log(e)}
-            // setPhoto={e => console.log(e)}
-            // setUsername={e => console.log(e)}
-            // setName={e =>console.log(e)}
-            // setSurname={e => console.log(e)}
+            setCity={e => console.log(e.target.value)}
+            setUsername={e => console.log(e)}
+            setName={e => console.log(e)}
+            setSurname={e => console.log(e)}
             title=""
             cta="Modifica"
             accessMode
             modifyModal
-          // onClick={console.log('click')}
-          // error={error}
+            data={userData}
+            onClick={handleModifyData}
+            error={false}//to change
           />
         </CustomModal>
       </div>

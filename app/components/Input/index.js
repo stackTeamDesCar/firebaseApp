@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function Input({ id, label, variant, onChange, type,value, fullWidth }) {
+function Input({ id, label, variant, onChange, type,value, defaultValue,fullWidth }) {
   const classes = useStyles();
   return (
-    <TextField classNameC={classes.field} id={id} type={type} value={value} label={label} variant={variant} onChange={onChange} className={classes.root} size="large" />
+    <TextField className={classes.field} id={id} defaultValue={defaultValue} type={type} value={value} label={label} variant={variant} onChange={onChange} className={classes.root} size="large" />
   );
 }
 

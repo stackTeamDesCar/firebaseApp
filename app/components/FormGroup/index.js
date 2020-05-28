@@ -36,19 +36,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, setName, setSurname, setPhoto, message, accessMode, error, modifyModal }) {
+function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, setName, setSurname, setPhoto, message, accessMode, error, modifyModal, data }) {
   const classes = useStyles();
-
+  console.log('d', data)
   return (
     <div className={classes.root}>
       <Typography variant="h1" align="center" color="primary">{title}</Typography>
       {error && <h6>Ci sono stati errori,riprova!</h6>}
       {!modifyModal && <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>}
       {!modifyModal && <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>}
-      {accessMode && <Input label="Name" type="text" variant="outlined" id="name" fullWidth onChange={setName}></Input>}
-      {accessMode && <Input label="Surname" type="text" variant="outlined" id="surname" fullWidth onChange={setSurname}></Input>}
-      {accessMode && <Input label="City" type="text" variant="outlined" id="city" fullWidth onChange={setCity}></Input>}
-      {accessMode && <Input label="Username" type="text" variant="outlined" id="username" fullWidth onChange={setUsername}></Input>}
+      {accessMode && <Input defaultValue={data ? data.name : 'Name'} label="Name" type="text" variant="outlined" id="name" fullWidth onChange={setName}></Input>}
+      {accessMode && <Input defaultValue={data ? data.surname : 'Surname'} label="Surname" type="text" variant="outlined" id="surname" fullWidth onChange={setSurname}></Input>}
+      {accessMode && <Input defaultValue={data ? data.city : 'City'} label="City" type="text" variant="outlined" id="city" fullWidth onChange={setCity}></Input>}
+      {accessMode && <Input defaultValue={data ? data.username : 'Username'} label="Username" type="text" variant="outlined" id="username" fullWidth onChange={setUsername}></Input>}
       {accessMode && !modifyModal &&
         <div className={classes.fileUpload}>
           <label className={classes.inputLabel}>Foto profilo +</label>
