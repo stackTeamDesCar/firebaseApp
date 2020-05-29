@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: '50%',
+    width: '70%',
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(2, 4, 3),
   },
@@ -35,7 +35,6 @@ export default function SimpleModal({ open, handleClose, children }) {
       <div className={classes.closeIcon}>
         <CloseIcon onClick={handleClose} />
       </div>
-      <h2 className={classes.title} id="simple-modal-title">Modifica dati personali</h2>
       {children}
     </div>
   );

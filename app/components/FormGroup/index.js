@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
     color: 'red',
     transition: 'all 1s'
   },
+  title: { 
+    // padding: props => `${props.paddingTitle}em`
+  },
   fileUpload: {
     position: 'relative',
     overflow: 'hidden',
@@ -36,12 +39,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function FormGroup({ title, cta, onClick, setEmail, setPassword, setCity, setUsername, setName, setSurname, setPhoto, message, accessMode, error, modifyModal, data }) {
-  const classes = useStyles();
-  console.log('d', data)
+function FormGroup(props) {
+
+  const { title, cta, titleSize, paddingTitle, onClick, setEmail, setPassword, setCity, setUsername, setName, setSurname, setPhoto, message, accessMode, error, modifyModal, data } = props;
+
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
-      <Typography variant="h1" align="center" color="primary">{title}</Typography>
+      <Typography
+        className={classes.title}
+        paddingTitle={paddingTitle}
+        variant={titleSize ? titleSize : 'h1'}
+        align="center"
+        color="primary">
+        {title}
+      </Typography>
       {error && <h6>Ci sono stati errori,riprova!</h6>}
       {!modifyModal && <Input label="email" type="email" variant="outlined" id="email" fullWidth onChange={setEmail}></Input>}
       {!modifyModal && <Input label="password" type="password" variant="outlined" id="password" fullWidth onChange={setPassword}></Input>}

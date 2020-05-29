@@ -15,7 +15,7 @@ import { compose } from "redux";
 import { useInjectSaga } from "utils/injectSaga";
 import { useInjectReducer } from "utils/injectReducer";
 import makeSelectProfile from "./selectors";
-import { editPhoto } from "./actions";
+import { editPhoto, editData } from "./actions";
 import { setLoading } from "containers/App/actions";
 import { makeSelectUserData, makeSelectLoading } from 'containers/App/selectors';
 
@@ -31,7 +31,6 @@ import ImageAvatar from 'components/Avatar';
 import CustomModal from 'components/CustomModal';
 import LoadingIndicator from 'components/LoadingIndicator';
 import FormGroup from 'components/FormGroup';
-
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -80,8 +79,12 @@ export function Profile({ userData, loading, dispatch }) {
   useInjectReducer({ key: "profile", reducer });
 
   const [openModal, onOpenModal] = useState(false);
-  // const [openModal, handleCloseModal] = useState(true);
 
+  const [city, setCity] = useState('');
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [error, setError] = useState(false);
 
   const classes = useStyles();
   const { photo } = userData;
@@ -92,10 +95,19 @@ export function Profile({ userData, loading, dispatch }) {
     dispatch(setLoading(true));
     dispatch(editPhoto({ uid: userData.id, photo: e.target.files[0] }));
   }
-
   const handleModifyData = () => {
-    console.log('modifica')
-    //da settare valori nuovi su fb
+    dispatch(setLoading(true));
+
+    const user = {
+      id: userData.id,
+      name: name ? name : userData.name,
+      surname: surname ? surname : userData.surname,
+      city: city ? city : userData.city,
+      username: username ? username : userData.username,
+    };
+    dispatch(editData(user));
+    onOpenModal(false);
+
   }
 
   return (
@@ -132,17 +144,19 @@ export function Profile({ userData, loading, dispatch }) {
         <CustomModal open={openModal} handleClose={() => onOpenModal(false)}>
 
           <FormGroup
-            setCity={e => console.log(e.target.value)}
-            setUsername={e => console.log(e)}
-            setName={e => console.log(e)}
-            setSurname={e => console.log(e)}
-            title=""
+            setCity={e => setCity(e.target.value)}
+            setUsername={e => setUsername(e.target.value)}
+            setName={e => setName(e.target.value)}
+            setSurname={e => setSurname(e.target.value)}
+            title="Modifica dati personali"
+            titleSize="h3"
+            titlePadding={2}
             cta="Modifica"
             accessMode
             modifyModal
             data={userData}
             onClick={handleModifyData}
-            error={false}//to change
+            error={error}
           />
         </CustomModal>
       </div>
