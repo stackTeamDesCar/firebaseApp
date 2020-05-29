@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 
 const useStyles = makeStyles({
   root: {
@@ -25,7 +26,18 @@ const useStyles = makeStyles({
     boxShadow: '3px 5x 5px',
     clipPath: 'circle(50% at 0% 0%)',
     backgroundColor: props => props.labelType || 'none',
-  }
+    zIndex: '3'
+  },
+  // iconFolder: {
+  //   position: 'absolute',
+  //   height: '100%',
+  //   width: '100%',
+  //   top: '0',
+  //   left: '0',
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // }
 });
 
 export default function CustomCard(props) {
@@ -41,6 +53,7 @@ export default function CustomCard(props) {
           title={props.cardTitle}
         />}
         <CardContent>
+          {/* <div className={classes.iconFolder}><FolderOpenIcon style={{ fontSize: '3em' }} /></div> */}
           {props.cardContent}
         </CardContent>
       </CardActionArea>

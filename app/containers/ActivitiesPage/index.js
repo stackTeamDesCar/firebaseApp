@@ -37,7 +37,6 @@ export function ActivitiesPage() {
               {/* da mappare card con attività di ciascun utente */}
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
@@ -47,7 +46,6 @@ export function ActivitiesPage() {
               </div>
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
@@ -56,7 +54,6 @@ export function ActivitiesPage() {
               </div>
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
@@ -66,7 +63,6 @@ export function ActivitiesPage() {
               </div>
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
@@ -76,7 +72,6 @@ export function ActivitiesPage() {
               </div>
               <div style={{ padding: '1em', flex: '1' }}>
                 <CustomCard
-                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
