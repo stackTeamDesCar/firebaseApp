@@ -35,44 +35,53 @@ export function ActivitiesPage() {
           <Grid item xs={12} >
             <Wrapper flex justify="flex-start" direction="row" >
               {/* da mappare card con attività di ciascun utente */}
-              <div style={{ padding: '1em'}}>
+              <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl=""
+                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
+                  labelType="green"
+
                 />
               </div>
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl=""
+                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
+                  labelType="red"
                 />
               </div>
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl=""
+                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
+                  labelType="blue"
+
                 />
               </div>
               <div style={{ padding: '1em' }}>
                 <CustomCard
-                  cardUrl=""
+                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
+                  labelType="yellow"
+
                 />
               </div>
               <div style={{ padding: '1em', flex: '1' }}>
                 <CustomCard
-                  cardUrl=""
+                  cardUrl
                   cardTitle="Titolo card"
                   cardContent={<div>Ciaone questo è il contenuto</div>}
                   buttonLabel="Clicca"
+                  labelType="black"
+
                 />
               </div>
 

@@ -16,26 +16,37 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  label: {
+    position: 'relative',
+    width: '60px',
+    height: '60px',
+    top: 0,
+    left: 0,
+    boxShadow: '3px 5x 5px',
+    clipPath: 'circle(50% at 0% 0%)',
+    backgroundColor: props => props.labelType || 'none',
+  }
 });
 
-export default function CustomCard({ cardUrl, cardTitle, cardContent, buttonLabel, onClick, btn }) {
-  const classes = useStyles();
+export default function CustomCard(props) {
+  const classes = useStyles(props);
 
   return (
-    <Card className={classes.root} onClick={onClick}>
+    <Card className={classes.root} onClick={props.onClick}>
+      <div className={classes.label}></div>
       <CardActionArea>
-        <CardMedia
+        {props.cardUrl && <CardMedia
           className={classes.media}
-          image={cardUrl}
-          title={cardTitle}
-        />
+          image={props.cardUrl}
+          title={props.cardTitle}
+        />}
         <CardContent>
-          {cardContent}
+          {props.cardContent}
         </CardContent>
       </CardActionArea>
-      {btn && <CardActions>
+      {props.btn && <CardActions>
         <Button size="small" color="primary">
-          {buttonLabel}
+          {props.buttonLabel}
         </Button>
       </CardActions>}
     </Card>
