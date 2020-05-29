@@ -118,7 +118,7 @@ export function Profile({ userData, loading, dispatch }) {
       <div>
         <Grid container justify="center" alignItems="center" style={{ height: '90vh' }}>
           <Grid item xs={4} >
-            <Wrapper flex direction="column">
+            <Wrapper padding={3} flex direction="column">
               <ImageAvatar src={photo} size={400} />
               <div className={classes.fileUpload}>
                 <label className={classes.inputLabel}>Edit</label>

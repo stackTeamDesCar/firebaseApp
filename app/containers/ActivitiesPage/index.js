@@ -26,27 +26,22 @@ export function ActivitiesPage() {
 
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
-        <Grid container justify="center" alignItems="center" style={{ height: '5vh' }}>
-        <Grid item xs={4} >
-            <Wrapper flex direction="column">
-              <Typography variant="h1" gutterBottom >Activities</Typography>
+      <div>
+        <Wrapper flex direction="column" style={{ height: '10vh' }}>
+          <Typography variant="h1" gutterBottom gutterTop >Activities</Typography>
+        </Wrapper>
+        <Grid container justify="center" alignItems="center" style={{ height: '82vh' }}>
+          <Grid item xs={4} >
+            <Wrapper flex direction="row" >
+              {/* da mappare card */}
+              <div><Typography variant="h5" gutterBottom >Scheda 1</Typography></div>
+              <div><Typography variant="h5" gutterBottom >Scheda 2</Typography></div> 
+              <div><Typography variant="h5" gutterBottom >Scheda 3</Typography></div>
             </Wrapper>
           </Grid>
         </Grid>
-      
-        <Grid container justify="center" alignItems="center" style={{ height: '87vh' }}>
-          <Grid item xs={4} >
-            <Wrapper flex direction="column">
-              <Typography variant="h1" gutterBottom >SCHEDA</Typography>
-            </Wrapper>
-          </Grid>
-          <Grid item xs={4} >
-            <Wrapper flex direction="column">
-              <Typography variant="h1" gutterBottom >SCHEDA</Typography>
-            </Wrapper>
-          </Grid>
-        </Grid>
-    </Slide> 
+      </div>
+    </Slide>
   );
 }
 

@@ -17,11 +17,11 @@ const useStyles = makeStyles(theme => ({
 
 function Wrapper(props) {
   const classes = useStyles(props);
-    return (
-          <Container  className={classes.root} maxWidth={props.maxWidth}>
-            {props.children}
-          </Container>
-      );
+  return (
+    <Container className={classes.root} maxWidth={props.maxWidth}>
+        {props.children}
+    </Container>
+  );
 }
 
 Wrapper.propTypes = {
