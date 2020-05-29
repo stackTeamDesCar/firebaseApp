@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: props => props.align || 'center',
     flexDirection: props => props.direction || 'row',
     backgroundColor: props => props.bg ? theme.colors.primary : '',
+    flexWrap: 'wrap'
   },
 }));
 

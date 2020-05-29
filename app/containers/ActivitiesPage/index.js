@@ -32,15 +32,50 @@ export function ActivitiesPage() {
           <Typography variant="h1" gutterBottom gutterTop >Activities</Typography>
         </Wrapper>
         <Grid container justify="center" alignItems="center" style={{ height: '82vh' }}>
-          <Grid item xs={4} >
-            <Wrapper flex direction="row" >
+          <Grid item xs={12} >
+            <Wrapper flex justify="flex-start" direction="row" >
               {/* da mappare card con attività di ciascun utente */}
-              <CustomCard
-                cardUrl=""
-                cardTitle="Titolo card"
-                cardContent={<div>ciaone questo è il contenuto</div>}
-                buttonLabel="Clicca"
-              />
+              <div style={{ padding: '1em'}}>
+                <CustomCard
+                  cardUrl=""
+                  cardTitle="Titolo card"
+                  cardContent={<div>Ciaone questo è il contenuto</div>}
+                  buttonLabel="Clicca"
+                />
+              </div>
+              <div style={{ padding: '1em' }}>
+                <CustomCard
+                  cardUrl=""
+                  cardTitle="Titolo card"
+                  cardContent={<div>Ciaone questo è il contenuto</div>}
+                  buttonLabel="Clicca"
+                />
+              </div>
+              <div style={{ padding: '1em' }}>
+                <CustomCard
+                  cardUrl=""
+                  cardTitle="Titolo card"
+                  cardContent={<div>Ciaone questo è il contenuto</div>}
+                  buttonLabel="Clicca"
+                />
+              </div>
+              <div style={{ padding: '1em' }}>
+                <CustomCard
+                  cardUrl=""
+                  cardTitle="Titolo card"
+                  cardContent={<div>Ciaone questo è il contenuto</div>}
+                  buttonLabel="Clicca"
+                />
+              </div>
+              <div style={{ padding: '1em', flex: '1' }}>
+                <CustomCard
+                  cardUrl=""
+                  cardTitle="Titolo card"
+                  cardContent={<div>Ciaone questo è il contenuto</div>}
+                  buttonLabel="Clicca"
+                />
+              </div>
+
             </Wrapper>
           </Grid>
         </Grid>
