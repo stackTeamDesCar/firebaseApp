@@ -26,16 +26,27 @@ export function ActivitiesPage() {
 
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
-        <Grid container justify="center" alignItems="center" style={{ height: '90vh' }}>
-          <Grid item xs={4} >
+        <Grid container justify="center" alignItems="center" style={{ height: '5vh' }}>
+        <Grid item xs={4} >
             <Wrapper flex direction="column">
-
               <Typography variant="h1" gutterBottom >Activities</Typography>
             </Wrapper>
           </Grid>
         </Grid>
+      
+        <Grid container justify="center" alignItems="center" style={{ height: '87vh' }}>
+          <Grid item xs={4} >
+            <Wrapper flex direction="column">
+              <Typography variant="h1" gutterBottom >SCHEDA</Typography>
+            </Wrapper>
+          </Grid>
+          <Grid item xs={4} >
+            <Wrapper flex direction="column">
+              <Typography variant="h1" gutterBottom >SCHEDA</Typography>
+            </Wrapper>
+          </Grid>
+        </Grid>
     </Slide> 
-
   );
 }
 

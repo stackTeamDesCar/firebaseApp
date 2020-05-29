@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: '70%',
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(2, 4, 3),
+    padding: '3em 0'
   },
   closeIcon: {
     cursor: 'pointer',

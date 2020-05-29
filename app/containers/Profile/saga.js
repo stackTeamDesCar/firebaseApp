@@ -36,7 +36,6 @@ function* editData({ user }) {
       city: user.city,
       username: user.username,
     });
-    
   }
   catch (err) {
     console.log(err)
@@ -50,6 +49,5 @@ function* editData({ user }) {
 export default function* defaultSaga() {
   yield takeLatest(EDIT_PHOTO, editPhoto);
   yield takeLatest(EDIT_DATA, editData);
-
 }
 
