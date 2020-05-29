@@ -18,11 +18,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CustomCard({ cardUrl, cardTitle, cardContent, buttonLabel }) {
+export default function CustomCard({ cardUrl, cardTitle, cardContent, buttonLabel, onClick, btn }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={onClick}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -33,11 +33,11 @@ export default function CustomCard({ cardUrl, cardTitle, cardContent, buttonLabe
           {cardContent}
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      {btn && <CardActions>
         <Button size="small" color="primary">
           {buttonLabel}
         </Button>
-      </CardActions>
+      </CardActions>}
     </Card>
   );
 }
