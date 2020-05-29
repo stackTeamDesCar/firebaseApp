@@ -17,6 +17,7 @@ import reducer from "./reducer";
 import saga from "./saga";
 
 import Wrapper from 'components/Wrapper';
+import CustomCard from 'components/CustomCard';
 
 import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
@@ -33,10 +34,13 @@ export function ActivitiesPage() {
         <Grid container justify="center" alignItems="center" style={{ height: '82vh' }}>
           <Grid item xs={4} >
             <Wrapper flex direction="row" >
-              {/* da mappare card */}
-              <div><Typography variant="h5" gutterBottom >Scheda 1</Typography></div>
-              <div><Typography variant="h5" gutterBottom >Scheda 2</Typography></div> 
-              <div><Typography variant="h5" gutterBottom >Scheda 3</Typography></div>
+              {/* da mappare card con attività di ciascun utente */}
+              <CustomCard
+                cardUrl=""
+                cardTitle="Titolo card"
+                cardContent={<div>ciaone questo è il contenuto</div>}
+                buttonLabel="Clicca"
+              />
             </Wrapper>
           </Grid>
         </Grid>
